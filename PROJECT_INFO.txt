@@ -7,5 +7,5 @@ BUILD_TIME: NOT BUILT YET
 BUILD_STATUS: NOT BUILT YET
 SIGNING: NOT CONFIGURED
 GITHUB_REPO: https://github.com/belalmomani/Zunivo
-KEY_CHANGES: Phase 1 - project skeleton, CI, architecture and plan
+KEY_CHANGES: Phase 1 - skeleton, CI; fix: AGP 9.2.1 + Gradle 9.4.1 + compileSdk 37 (AAR metadata failure)
 USER_ACTIONS_REQUIRED: production signing keystore; Start.io production app id; Supabase URL + anon key

@@ -22,4 +22,4 @@ Rules
 - Languages: Arabic (RTL) and English (LTR) resources from day one; user choice persisted.
 
 Versions (chosen from official Android docs, **not yet verified by a real build**):
-AGP 9.0.1 (built-in Kotlin) · Gradle 9.1.0 · Kotlin 2.3.21 · Compose BOM 2026.06.00 · compileSdk/targetSdk 36 · minSdk 26 · JDK 17.
+AGP 9.2.1 (built-in Kotlin) · Gradle 9.4.1 · Kotlin 2.3.21 · Compose BOM 2026.06.00 · compileSdk 37 / targetSdk 36 · minSdk 26 · JDK 17.

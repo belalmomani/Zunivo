@@ -9,7 +9,7 @@ val keystorePath: String? = System.getenv("ZUNIVO_KEYSTORE_PATH")
 
 android {
     namespace = "com.zunivo.app"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.zunivo.app"

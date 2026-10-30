@@ -10,7 +10,7 @@ Phase 1 of 9 (skeleton). See `docs/PLAN.md` and `docs/ARCHITECTURE.md`. Full REA
 
 ## Build
 CI (GitHub Actions) builds and tests on every push: `.github/workflows/android.yml`.
-Local: JDK 17 + Android SDK, then `gradle :app:assembleDebug` (Gradle 9.1.0; no wrapper committed yet — generate with `gradle wrapper`).
+Local: JDK 17 + Android SDK, then `gradle :app:assembleDebug` (Gradle 9.4.1; no wrapper committed yet — generate with `gradle wrapper`).
 
 ## Signing
 Never commit keys. Release signing reads env vars `ZUNIVO_KEYSTORE_PATH`, `ZUNIVO_KEYSTORE_PASSWORD`, `ZUNIVO_KEY_ALIAS`, `ZUNIVO_KEY_PASSWORD`.
