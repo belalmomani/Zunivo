@@ -2,4 +2,77 @@
 <resources>
     <string name="app_name">زينوفو</string>
     <string name="app_tagline">أيقونات ... تصاميم ... إبداع بلا حدود</string>
+    <string name="action_back">رجوع</string>
+
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_search">بحث</string>
+    <string name="nav_favorites">المفضلة</string>
+    <string name="nav_more">المزيد</string>
+
+    <string name="home_search_hint">ابحث عن أيقونة أو مصمم...</string>
+    <string name="home_quick_edit">تعديل أيقونة</string>
+    <string name="home_quick_pack">إنشاء حزمة</string>
+    <string name="home_quick_designers">المصممون</string>
+    <string name="home_recent">المستخدمة مؤخرًا</string>
+    <string name="home_recent_empty_title">لا توجد أيقونات بعد</string>
+    <string name="home_recent_empty_msg">ستظهر هنا الأيقونات التي تفتحها.</string>
+    <string name="home_categories">التصنيفات</string>
+
+    <string name="search_hint">ابحث عن الأيقونات</string>
+    <string name="search_dev_title">البحث قيد التطوير</string>
+    <string name="search_dev_msg">سيتصل البحث بمكتبة Iconify في المرحلة 3.</string>
+
+    <string name="fav_empty_title">المفضلة فارغة</string>
+    <string name="fav_empty_msg">ستظهر هنا الأيقونات التي تحفظها.</string>
+
+    <string name="more_title">المزيد</string>
+    <string name="menu_folders">مجلداتي</string>
+    <string name="menu_editor">محرر الأيقونات</string>
+    <string name="menu_packs">الحزم</string>
+    <string name="menu_designers">المصممون</string>
+    <string name="menu_store">متجري</string>
+    <string name="menu_downloads">التنزيلات</string>
+    <string name="menu_settings">الإعدادات</string>
+    <string name="menu_help">المساعدة</string>
+    <string name="menu_privacy">الخصوصية</string>
+    <string name="menu_about">حول التطبيق</string>
+
+    <string name="coming_soon_title">قيد التطوير</string>
+    <string name="coming_soon_msg">ستتوفر هذه الميزة في المرحلة %1$d من خطة البناء.</string>
+
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_language">اللغة</string>
+    <string name="lang_system">لغة النظام</string>
+    <string name="lang_arabic">العربية</string>
+    <string name="lang_english">English</string>
+    <string name="settings_language_note">يُحفظ اختيارك ويُطبَّق فورًا.</string>
+
+    <string name="about_title">حول التطبيق</string>
+    <string name="about_version">الإصدار: %1$s</string>
+    <string name="about_package">الحزمة: %1$s</string>
+    <string name="about_repo">المستودع: %1$s</string>
+    <string name="about_license_note">تحتفظ كل أيقونة بترخيص مجموعتها الأصلية، وسيعرض زينوفو الترخيص والمؤلف لكل أيقونة.</string>
+
+    <string name="privacy_title">الخصوصية</string>
+    <string name="privacy_draft">مسودة تُحدَّث مع إضافة الميزات</string>
+    <string name="privacy_body">هذا الإصدار لا يجمع بيانات شخصية ولا يطلب إذن الإنترنت. عند إضافة البحث سترسل كلمات البحث إلى واجهة Iconify العامة لجلب النتائج. وأي ميزة تستخدم الصور أو الحسابات ستوضح البيانات التي تستخدمها وتطلب موافقتك أولًا.</string>
+
+    <string name="help_title">المساعدة</string>
+    <string name="help_body">ابدأ من تبويب البحث لاستكشاف الأيقونات. غيّر اللغة من الإعدادات. الميزات المكتوب عليها «قيد التطوير» ستُفعَّل في مراحل لاحقة.</string>
+
+    <string name="cat_tech">التقنية</string>
+    <string name="cat_business">الأعمال</string>
+    <string name="cat_shops">المتاجر</string>
+    <string name="cat_food">الطعام والمطاعم</string>
+    <string name="cat_nature">الطبيعة</string>
+    <string name="cat_health">الصحة</string>
+    <string name="cat_education">التعليم</string>
+    <string name="cat_games">الألعاب</string>
+    <string name="cat_travel">السفر</string>
+    <string name="cat_home">المنزل</string>
+    <string name="cat_communication">التواصل</string>
+    <string name="cat_finance">المال</string>
+    <string name="cat_transport">المواصلات</string>
+    <string name="cat_social">وسائل التواصل الاجتماعي</string>
+    <string name="cat_general">الرموز العامة</string>
 </resources>
