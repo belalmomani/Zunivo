@@ -1,0 +1,11 @@
+APP_NAME_AR: زينوفو
+APP_NAME_EN: Zunivo
+PACKAGE_NAME: com.zunivo.app
+VERSION_NAME: 0.1.0
+VERSION_CODE: 1
+BUILD_TIME: NOT BUILT YET
+BUILD_STATUS: NOT BUILT YET
+SIGNING: NOT CONFIGURED
+GITHUB_REPO: https://github.com/belalmomani/Zunivo
+KEY_CHANGES: Phase 1 - project skeleton, CI, architecture and plan
+USER_ACTIONS_REQUIRED: production signing keystore; Start.io production app id; Supabase URL + anon key
