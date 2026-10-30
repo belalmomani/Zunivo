@@ -19,8 +19,6 @@
     <string name="home_categories">التصنيفات</string>
 
     <string name="search_hint">ابحث عن الأيقونات</string>
-    <string name="search_dev_title">البحث قيد التطوير</string>
-    <string name="search_dev_msg">سيتصل البحث بمكتبة Iconify في المرحلة 3.</string>
 
     <string name="fav_empty_title">المفضلة فارغة</string>
     <string name="fav_empty_msg">ستظهر هنا الأيقونات التي تحفظها.</string>
@@ -55,10 +53,10 @@
 
     <string name="privacy_title">الخصوصية</string>
     <string name="privacy_draft">مسودة تُحدَّث مع إضافة الميزات</string>
-    <string name="privacy_body">هذا الإصدار لا يجمع بيانات شخصية ولا يطلب إذن الإنترنت. عند إضافة البحث سترسل كلمات البحث إلى واجهة Iconify العامة لجلب النتائج. وأي ميزة تستخدم الصور أو الحسابات ستوضح البيانات التي تستخدمها وتطلب موافقتك أولًا.</string>
+    <string name="privacy_body">زينوفو نفسه لا يجمع بيانات شخصية ولا يتطلب حسابًا. عند البحث تُرسل كلمات البحث إلى واجهة Iconify العامة (api.iconify.design) وتُحمَّل منها صور الأيقونات، وقد تسجّل Iconify الطلبات وفق سياستها الخاصة. وأي ميزة قادمة تستخدم صورك أو حساباتك ستوضح البيانات المستخدمة وتطلب موافقتك أولًا.</string>
 
     <string name="help_title">المساعدة</string>
-    <string name="help_body">ابدأ من تبويب البحث لاستكشاف الأيقونات. غيّر اللغة من الإعدادات. الميزات المكتوب عليها «قيد التطوير» ستُفعَّل في مراحل لاحقة.</string>
+    <string name="help_body">اكتب كلمة في تبويب البحث أو اختر تصنيفًا للعثور على الأيقونات. اضغط على أيقونة لعرض مجموعتها ومؤلفها وترخيصها. غيّر اللغة من الإعدادات. الميزات المرتبطة بمراحل لاحقة ستُفعَّل مع نمو التطبيق.</string>
 
     <string name="cat_tech">التقنية</string>
     <string name="cat_business">الأعمال</string>
@@ -75,4 +73,57 @@
     <string name="cat_transport">المواصلات</string>
     <string name="cat_social">وسائل التواصل الاجتماعي</string>
     <string name="cat_general">الرموز العامة</string>
+
+    <string name="action_retry">إعادة المحاولة</string>
+    <string name="action_load_more">عرض المزيد</string>
+    <string name="search_idle_title">اعثر على الأيقونة المناسبة</string>
+    <string name="search_idle_msg">اكتب كلمة أو اختر تصنيفًا. يعمل البحث على مكتبة Iconify العامة.</string>
+    <string name="search_empty_title">لا توجد نتائج</string>
+    <string name="search_empty_msg">جرّب كلمة مختلفة أو أقصر.</string>
+    <string name="search_untranslated_msg">لم يتمكن زينوفو من ترجمة هذه الكلمة بعد. جرّب كلمة بالإنجليزية.</string>
+    <string name="search_filter_empty_msg">لا توجد أيقونات بهذا النمط. جرّب «الكل».</string>
+    <string name="search_searched_as">تم البحث عن: %1$s</string>
+    <string name="search_category_note">التصنيفات تقريبية: تبحث عن كلمات مرتبطة بها.</string>
+    <string name="search_style_note">نمطا «خطي» و«ممتلئ» تقريبيان ويعتمدان على أسماء الأيقونات.</string>
+    <string name="style_all">الكل</string>
+    <string name="style_outline">خطي</string>
+    <string name="style_filled">ممتلئ</string>
+    <string name="style_colored">ملوّن</string>
+    <string name="error_offline_title">لا يوجد اتصال</string>
+    <string name="error_offline_msg">تحقق من اتصالك بالإنترنت وأعد المحاولة.</string>
+    <string name="error_timeout_title">انتهت مهلة الطلب</string>
+    <string name="error_timeout_msg">الشبكة بطيئة. أعد المحاولة بعد قليل.</string>
+    <string name="error_server_title">مشكلة في الخدمة</string>
+    <string name="error_server_msg">أعادت خدمة الأيقونات خطأً (الرمز %1$d). حاول لاحقًا.</string>
+    <string name="error_bad_data_title">استجابة غير متوقعة</string>
+    <string name="error_bad_data_msg">أرسلت الخدمة بيانات لم يتمكن زينوفو من قراءتها.</string>
+    <string name="detail_name">الأيقونة</string>
+    <string name="detail_set">مجموعة الأيقونات</string>
+    <string name="detail_source">المصدر</string>
+    <string name="detail_source_value">Iconify (api.iconify.design)</string>
+    <string name="detail_author">المؤلف</string>
+    <string name="detail_license">الترخيص</string>
+    <string name="detail_unknown">غير متوفر</string>
+    <string name="detail_license_notes">ملاحظات الترخيص</string>
+    <string name="license_notice_required">احتفظ بإشعار الترخيص واسم المؤلف عند مشاركة هذه الأيقونة أو نشرها.</string>
+    <string name="license_permissive">ترخيص متساهل. الاستخدام حر ويشمل الاستخدام التجاري، مع الاحتفاظ بإشعار الترخيص حيث يلزم.</string>
+    <string name="license_attribution">ترخيص يشترط النسب. يجب ذكر اسم المؤلف.</string>
+    <string name="license_sharealike">نسب ومشاركة بالمثل. يجب ذكر المؤلف ومشاركة التعديلات بالترخيص نفسه.</string>
+    <string name="license_noncommercial">ترخيص غير تجاري. لا تستخدمها في مشاريع تجارية، ولن يوزعها زينوفو تلقائيًا.</string>
+    <string name="license_noderivs">ترخيص يمنع التعديل. يجب عدم تعديل هذه الأيقونة.</string>
+    <string name="license_review">ترخيص لا يتعرف عليه زينوفو. اقرأه قبل الاستخدام، والتوزيع التلقائي معطّل.</string>
+    <string name="license_unknown">معلومات الترخيص غير متوفرة. لا تعد توزيع هذه الأيقونة قبل التحقق من ترخيصها.</string>
+    <string name="attribution_template">الأيقونة %1$s من مجموعة %2$s للمؤلف %3$s، بترخيص %4$s.</string>
+    <string name="detail_copy_name">نسخ اسم الأيقونة</string>
+    <string name="detail_copy_attribution">نسخ نص النسب</string>
+    <string name="detail_open_license">فتح صفحة الترخيص</string>
+    <string name="detail_open_author">فتح صفحة المؤلف</string>
+    <string name="detail_copied">تم النسخ</string>
+    <string name="detail_no_browser">لا يوجد متصفح لفتح الرابط.</string>
+    <string name="detail_next_title">قريبًا</string>
+    <string name="badge_phase">المرحلة %1$d</string>
+    <string name="action_add_favorite">إضافة إلى المفضلة</string>
+    <string name="action_add_folder">إضافة إلى مجلد</string>
+    <string name="action_open_editor">فتح في المحرر</string>
+    <string name="action_download">تنزيل</string>
 </resources>

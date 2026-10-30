@@ -23,3 +23,11 @@ Rules
 
 Versions (chosen from official Android docs, **not yet verified by a real build**):
 AGP 9.2.1 (built-in Kotlin) · Gradle 9.4.1 · Kotlin 2.3.21 · Compose BOM 2026.06.00 · compileSdk 37 / targetSdk 36 · minSdk 26 · JDK 17.
+
+## Phase 3: search (implemented)
+- `data/remote`: `IconifyApi` (HttpURLConnection, 10 s timeouts, 2 MB cap, typed `ApiException`) and `IconifyParser` (pure, unit-tested).
+- `data/repo/SearchRepository`: merges up to 3 related queries round-robin, in-memory LRU cache (40 pages). Icon images are loaded and disk-cached by Coil.
+- `feature/search`: `QueryExpander` (small Arabic dictionary + synonyms), `CategorySeeds`, `StyleFilter` (name-based, labelled approximate), `SearchViewModel` (400 ms debounce, 64 first, 999 on "show more").
+- `domain/LicensePolicy`: maps the set's SPDX id to what the app may offer; unknown or unrecognized licenses block automatic distribution.
+- Source of truth for endpoints: Iconify docs (`/search`, `/{prefix}/{name}.svg?color&height`). Search sets are fetched live; nothing is bundled.
+- Added dependencies: Coil 3.4.0 (compose, svg, network-okhttp), lifecycle-viewmodel-compose 2.11.0, org.json (tests only).

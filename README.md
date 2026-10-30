@@ -6,7 +6,7 @@ and a personal store that imports GitHub projects into reviewable drafts.
 Package: `com.zunivo.app` · Repo: https://github.com/belalmomani/Zunivo
 
 ## Status
-Phase 2 of 9 (app shell, navigation, AR/EN). See `docs/PLAN.md` and `docs/ARCHITECTURE.md`. Full README is completed in phase 9.
+Phase 3 of 9 (real Iconify search, license-aware icon details).
 
 ## Build
 CI (GitHub Actions) builds and tests on every push: `.github/workflows/android.yml`.

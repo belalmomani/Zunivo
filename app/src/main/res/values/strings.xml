@@ -19,8 +19,6 @@
     <string name="home_categories">Categories</string>
 
     <string name="search_hint">Search icons</string>
-    <string name="search_dev_title">Search is in development</string>
-    <string name="search_dev_msg">Search will connect to the Iconify library in phase 3.</string>
 
     <string name="fav_empty_title">No favorites yet</string>
     <string name="fav_empty_msg">Icons you save will appear here.</string>
@@ -55,10 +53,10 @@
 
     <string name="privacy_title">Privacy</string>
     <string name="privacy_draft">Draft - updated as features are added</string>
-    <string name="privacy_body">This version does not collect personal data and does not request internet access. When search is added, your search words will be sent to the public Iconify API to fetch results. Any feature that uses images or accounts will explain what data it uses and ask for your consent first.</string>
+    <string name="privacy_body">Zunivo itself collects no personal data and has no accounts. When you search, your search words are sent to the public Iconify API (api.iconify.design), and icon images are loaded from it; Iconify may log requests under its own policy. Any future feature that uses your images or accounts will explain what data it uses and ask for your consent first.</string>
 
     <string name="help_title">Help</string>
-    <string name="help_body">Start from the Search tab to explore icons. Change the language from Settings. Features marked In development will be enabled in later phases.</string>
+    <string name="help_body">Type a keyword in Search or pick a category to find icons. Tap an icon to see its set, author and license. Change the language from Settings. Features marked as a later phase will be enabled as the app grows.</string>
 
     <string name="cat_tech">Technology</string>
     <string name="cat_business">Business</string>
@@ -75,4 +73,57 @@
     <string name="cat_transport">Transport</string>
     <string name="cat_social">Social media</string>
     <string name="cat_general">General symbols</string>
+
+    <string name="action_retry">Try again</string>
+    <string name="action_load_more">Show more</string>
+    <string name="search_idle_title">Find the right icon</string>
+    <string name="search_idle_msg">Type a keyword or pick a category. Search runs on the public Iconify library.</string>
+    <string name="search_empty_title">No results</string>
+    <string name="search_empty_msg">Try a different or shorter keyword.</string>
+    <string name="search_untranslated_msg">Zunivo could not translate this word yet. Try an English keyword.</string>
+    <string name="search_filter_empty_msg">No icons match this style filter. Try All.</string>
+    <string name="search_searched_as">Searched as: %1$s</string>
+    <string name="search_category_note">Categories are approximate: they search related keywords.</string>
+    <string name="search_style_note">Outline and Filled are approximate and based on icon names.</string>
+    <string name="style_all">All</string>
+    <string name="style_outline">Outline</string>
+    <string name="style_filled">Filled</string>
+    <string name="style_colored">Colored</string>
+    <string name="error_offline_title">No connection</string>
+    <string name="error_offline_msg">Check your internet connection and try again.</string>
+    <string name="error_timeout_title">Request timed out</string>
+    <string name="error_timeout_msg">The network is slow. Try again in a moment.</string>
+    <string name="error_server_title">Server problem</string>
+    <string name="error_server_msg">The icon service returned an error (code %1$d). Try again later.</string>
+    <string name="error_bad_data_title">Unexpected response</string>
+    <string name="error_bad_data_msg">The icon service sent data Zunivo could not read.</string>
+    <string name="detail_name">Icon</string>
+    <string name="detail_set">Icon set</string>
+    <string name="detail_source">Source</string>
+    <string name="detail_source_value">Iconify (api.iconify.design)</string>
+    <string name="detail_author">Author</string>
+    <string name="detail_license">License</string>
+    <string name="detail_unknown">Not provided</string>
+    <string name="detail_license_notes">License notes</string>
+    <string name="license_notice_required">Keep the license notice and author credit when you share or publish this icon.</string>
+    <string name="license_permissive">Permissive license. Free to use, including commercially; keep the license notice where required.</string>
+    <string name="license_attribution">Attribution license. You must credit the author.</string>
+    <string name="license_sharealike">Attribution and share-alike. You must credit the author and share changes under the same license.</string>
+    <string name="license_noncommercial">Non-commercial license. Do not use in commercial projects. Zunivo will not distribute it automatically.</string>
+    <string name="license_noderivs">No-derivatives license. The icon must not be modified.</string>
+    <string name="license_review">License not recognized by Zunivo. Read it before using. Automatic distribution is disabled.</string>
+    <string name="license_unknown">License information is missing. Do not redistribute this icon until you verify its license.</string>
+    <string name="attribution_template">Icon %1$s from the %2$s set by %3$s, licensed under %4$s.</string>
+    <string name="detail_copy_name">Copy icon name</string>
+    <string name="detail_copy_attribution">Copy attribution text</string>
+    <string name="detail_open_license">Open license page</string>
+    <string name="detail_open_author">Open author page</string>
+    <string name="detail_copied">Copied</string>
+    <string name="detail_no_browser">No browser found to open the link.</string>
+    <string name="detail_next_title">Coming next</string>
+    <string name="badge_phase">phase %1$d</string>
+    <string name="action_add_favorite">Add to favorites</string>
+    <string name="action_add_folder">Add to folder</string>
+    <string name="action_open_editor">Open in editor</string>
+    <string name="action_download">Download</string>
 </resources>

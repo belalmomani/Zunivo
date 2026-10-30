@@ -26,7 +26,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zunivo.app.R
+import com.zunivo.app.feature.search.SearchViewModel
 import com.zunivo.app.core.AppInfo
 import com.zunivo.app.feature.search.Category
 import com.zunivo.app.ui.components.EmptyState
@@ -37,7 +39,7 @@ import com.zunivo.app.ui.navigation.SubScreen
 import com.zunivo.app.ui.navigation.icon
 
 @Composable
-fun HomeScreen(onOpenSearch: () -> Unit, onOpen: (SubScreen) -> Unit) {
+fun HomeScreen(onOpenSearch: () -> Unit, onOpen: (SubScreen) -> Unit, searchVm: SearchViewModel = viewModel()) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -74,7 +76,7 @@ fun HomeScreen(onOpenSearch: () -> Unit, onOpen: (SubScreen) -> Unit) {
                 SectionTitle(stringResource(R.string.home_categories))
                 LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(Category.entries) { category ->
-                        AssistChip(onClick = onOpenSearch, label = { Text(stringResource(category.labelRes)) })
+                        AssistChip(onClick = { searchVm.onCategory(category); onOpenSearch() }, label = { Text(stringResource(category.labelRes)) })
                     }
                 }
             }

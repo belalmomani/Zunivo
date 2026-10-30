@@ -7,5 +7,5 @@ BUILD_TIME: NOT BUILT YET
 BUILD_STATUS: NOT BUILT YET
 SIGNING: NOT CONFIGURED
 GITHUB_REPO: https://github.com/belalmomani/Zunivo
-KEY_CHANGES: Phase 2 - shell UI, navigation, AR/EN switch, brand logo (not yet built)
+KEY_CHANGES: Phase 3 - Iconify search, categories, icon details with license info (not yet built)
 USER_ACTIONS_REQUIRED: production signing keystore; Start.io production app id; Supabase URL + anon key
