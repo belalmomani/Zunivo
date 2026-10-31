@@ -31,6 +31,7 @@ import com.zunivo.app.R
 import com.zunivo.app.feature.search.SearchViewModel
 import com.zunivo.app.core.AppInfo
 import com.zunivo.app.feature.search.Category
+import com.zunivo.app.ui.components.ActionCard
 import com.zunivo.app.ui.components.EmptyState
 import com.zunivo.app.ui.components.SectionTitle
 import com.zunivo.app.ui.components.TileCard
@@ -60,6 +61,9 @@ fun HomeScreen(onOpenSearch: () -> Unit, onOpen: (SubScreen) -> Unit, searchVm: 
                 TileCard(SubScreen.DESIGNERS.icon(), stringResource(R.string.home_quick_designers),
                     { onOpen(SubScreen.DESIGNERS) }, Modifier.weight(1f))
             }
+        }
+        item {
+            ActionCard(SubScreen.STUDIO.icon(), stringResource(R.string.menu_studio), { onOpen(SubScreen.STUDIO) })
         }
         item {
             Column {

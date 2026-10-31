@@ -6,7 +6,7 @@ and a personal store that imports GitHub projects into reviewable drafts.
 Package: `com.zunivo.app` · Repo: https://github.com/belalmomani/Zunivo
 
 ## Status
-Phase 3 of 9 (real Iconify search, license-aware icon details).
+Phase 4 of 9 (icon editor, image-to-icon-set studio).
 
 ## Build
 CI (GitHub Actions) builds and tests on every push: `.github/workflows/android.yml`.

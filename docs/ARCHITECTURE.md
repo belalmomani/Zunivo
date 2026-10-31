@@ -31,3 +31,10 @@ AGP 9.2.1 (built-in Kotlin) · Gradle 9.4.1 · Kotlin 2.3.21 · Compose BOM 2026
 - `domain/LicensePolicy`: maps the set's SPDX id to what the app may offer; unknown or unrecognized licenses block automatic distribution.
 - Source of truth for endpoints: Iconify docs (`/search`, `/{prefix}/{name}.svg?color&height`). Search sets are fetched live; nothing is bundled.
 - Added dependencies: Coil 3.4.0 (compose, svg, network-okhttp), lifecycle-viewmodel-compose 2.11.0, org.json (tests only).
+
+## Phase 4: editor + image studio (implemented, not yet built)
+- `domain/EditModels`: `EditParams` (colour, background, size, padding, rotate, flip) -> Iconify URL params; `IconEdit` stores params plus a snapshot of set / author / license so edits never lose their source.
+- `domain/SvgTools`: `SvgSafety` rejects scripts, external hrefs, event attributes; `SvgComposer` wraps the downloaded SVG with padding/background and a provenance comment (source, original author, license, "adapted copy by the user").
+- `feature/editor/EditorViewModel`: save/reopen/delete (JSON file in private storage, `data/local`), export SVG/PNG (PNG rendered with AndroidSVG), share via FileProvider. A no-derivatives license blocks modified copies; unknown licenses show a warning.
+- `feature/studio`: on-device palette extraction (bucketed colours), simplicity estimate (colours + edges), HSL harmony; icon suggestions come from category keywords on Iconify. The image is never uploaded and no AI service is used.
+- Packs/ZIP export, folders and favorites remain phase 5.

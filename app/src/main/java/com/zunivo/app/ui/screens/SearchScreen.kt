@@ -53,12 +53,12 @@ import com.zunivo.app.ui.components.EmptyState
 import com.zunivo.app.ui.components.ScreenHeader
 
 @Composable
-fun SearchScreen(vm: SearchViewModel = viewModel()) {
+fun SearchScreen(onOpenEditor: (IconItem) -> Unit, vm: SearchViewModel = viewModel()) {
     val state by vm.state.collectAsStateWithLifecycle()
     val selected = state.selected
     if (selected != null) {
         BackHandler { vm.select(null) }
-        IconDetailScreen(item = selected, onBack = { vm.select(null) })
+        IconDetailScreen(item = selected, onBack = { vm.select(null) }, onOpenEditor = onOpenEditor)
     } else {
         SearchContent(state, vm)
     }

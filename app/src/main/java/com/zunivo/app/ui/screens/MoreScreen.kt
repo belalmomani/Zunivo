@@ -20,7 +20,7 @@ import com.zunivo.app.ui.navigation.icon
 import com.zunivo.app.ui.navigation.titleRes
 
 private val menuOrder = listOf(
-    SubScreen.FOLDERS, SubScreen.EDITOR, SubScreen.PACKS, SubScreen.DESIGNERS, SubScreen.STORE,
+    SubScreen.FOLDERS, SubScreen.EDITOR, SubScreen.STUDIO, SubScreen.PACKS, SubScreen.DESIGNERS, SubScreen.STORE,
     SubScreen.DOWNLOADS, SubScreen.SETTINGS, SubScreen.HELP, SubScreen.PRIVACY, SubScreen.ABOUT,
 )
 

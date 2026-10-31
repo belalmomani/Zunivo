@@ -27,7 +27,11 @@ import com.zunivo.app.i18n.AppLanguage
 import com.zunivo.app.ui.navigation.NavState
 import com.zunivo.app.ui.navigation.SubScreen
 import com.zunivo.app.ui.navigation.Tab
+import com.zunivo.app.feature.editor.EditorViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zunivo.app.ui.screens.AboutScreen
+import com.zunivo.app.ui.screens.EditorScreen
+import com.zunivo.app.ui.screens.ImageStudioScreen
 import com.zunivo.app.ui.screens.ComingSoonScreen
 import com.zunivo.app.ui.screens.FavoritesScreen
 import com.zunivo.app.ui.screens.HelpScreen
@@ -70,6 +74,7 @@ fun ZunivoRoot(currentLanguage: AppLanguage, onLanguageChange: (AppLanguage) -> 
 @Composable
 private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLanguage) -> Unit) {
     var nav by rememberSaveable(stateSaver = NavStateSaver) { mutableStateOf(NavState()) }
+    val editorVm: EditorViewModel = viewModel()
     BackHandler(enabled = nav.canGoBack()) { nav = nav.back() }
 
     Scaffold(
@@ -94,7 +99,10 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
                         onOpenSearch = { nav = nav.selectTab(Tab.SEARCH) },
                         onOpen = { screen -> nav = nav.open(screen) },
                     )
-                    Tab.SEARCH -> SearchScreen()
+                    Tab.SEARCH -> SearchScreen(onOpenEditor = { item ->
+                        editorVm.open(item)
+                        nav = nav.open(SubScreen.EDITOR)
+                    })
                     Tab.FAVORITES -> FavoritesScreen()
                     Tab.MORE -> MoreScreen(onOpen = { screen -> nav = nav.open(screen) })
                 }
@@ -107,6 +115,8 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
                         onOpen = { screen -> nav = nav.open(screen) },
                         onBack = goBack,
                     )
+                    SubScreen.EDITOR -> EditorScreen(onBack = goBack, onGoSearch = { nav = nav.selectTab(Tab.SEARCH) }, vm = editorVm)
+                    SubScreen.STUDIO -> ImageStudioScreen(onBack = goBack)
                     SubScreen.ABOUT -> AboutScreen(goBack)
                     SubScreen.PRIVACY -> PrivacyScreen(goBack)
                     SubScreen.HELP -> HelpScreen(goBack)

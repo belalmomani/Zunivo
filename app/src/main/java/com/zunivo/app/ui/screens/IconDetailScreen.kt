@@ -36,7 +36,7 @@ import com.zunivo.app.ui.components.ScreenHeader
 import com.zunivo.app.ui.components.SectionTitle
 
 @Composable
-fun IconDetailScreen(item: IconItem, onBack: () -> Unit) {
+fun IconDetailScreen(item: IconItem, onBack: () -> Unit, onOpenEditor: (IconItem) -> Unit) {
     val context = LocalContext.current
     val set = item.set
     val assessment = LicensePolicy.assess(set?.licenseSpdx)
@@ -78,7 +78,10 @@ fun IconDetailScreen(item: IconItem, onBack: () -> Unit) {
                     color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
 
-            Button(onClick = { copy(context, item.ref.id) }, modifier = Modifier.fillMaxWidth()) {
+            Button(onClick = { onOpenEditor(item) }, modifier = Modifier.fillMaxWidth()) {
+                Text(stringResource(R.string.action_edit_export))
+            }
+            OutlinedButton(onClick = { copy(context, item.ref.id) }, modifier = Modifier.fillMaxWidth()) {
                 Text(stringResource(R.string.detail_copy_name))
             }
             if (attribution != null) {
@@ -102,8 +105,6 @@ fun IconDetailScreen(item: IconItem, onBack: () -> Unit) {
             SectionTitle(stringResource(R.string.detail_next_title))
             DisabledAction(R.string.action_add_favorite, 5)
             DisabledAction(R.string.action_add_folder, 5)
-            DisabledAction(R.string.action_open_editor, 4)
-            DisabledAction(R.string.action_download, 4)
         }
     }
 }
@@ -123,7 +124,7 @@ private fun DisabledAction(labelRes: Int, phase: Int) {
     }
 }
 
-private fun licenseMessage(kind: LicenseKind): Int = when (kind) {
+internal fun licenseMessage(kind: LicenseKind): Int = when (kind) {
     LicenseKind.PERMISSIVE -> R.string.license_permissive
     LicenseKind.ATTRIBUTION -> R.string.license_attribution
     LicenseKind.SHARE_ALIKE -> R.string.license_sharealike
