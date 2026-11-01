@@ -7,5 +7,5 @@ BUILD_TIME: NOT BUILT YET
 BUILD_STATUS: NOT BUILT YET
 SIGNING: NOT CONFIGURED
 GITHUB_REPO: https://github.com/belalmomani/Zunivo
-KEY_CHANGES: Phase 5 - favorites, folders, packs with verified ZIP export, supabase schema; license/author link buttons removed (not yet built)
+KEY_CHANGES: Phase 6 - My store: GitHub import, drafts, per-item review, approval, APK download with checksum, update diff (not yet built)
 USER_ACTIONS_REQUIRED: production signing keystore; Start.io production app id; Supabase URL + anon key

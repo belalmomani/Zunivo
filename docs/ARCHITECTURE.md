@@ -45,3 +45,11 @@ AGP 9.2.1 (built-in Kotlin) · Gradle 9.4.1 · Kotlin 2.3.21 · Compose BOM 2026
 - `feature/library/LibraryViewModel`: create / rename / duplicate / delete / reorder / rename files / pack colour; ready-made packs are built live from Iconify search (`StarterPacks`).
 - `PackExporter`: ZIP with `svg/*.svg`, `README.md`, `LICENSES.txt`, `colors.json`, `preview.png`; `PackPlanner` excludes unknown, unrecognized, non-commercial and no-derivatives licenses; the archive is re-opened and read back before sharing.
 - Designer pages: `docs/supabase/schema.sql` (tables + RLS, real download counts, report table). The app screen says "not connected"; no fake designers. The service_role key must never be in the app.
+
+## Phase 6: "My store" - GitHub import (implemented, not yet built)
+- `domain/StoreModels`: `GitHubUrl` (github.com/owner/repo only), `GitHubHosts` (https + GitHub hosts only, also for every redirect), draft/item/decision models, `DraftOps` (accept/reject/reset, cover, order, approve), `DraftMerge` (diff + merge on refresh).
+- `data/remote/GitHubApi`: public REST API without a token; repository, README, releases, CHANGELOG.md; streaming download with size caps, manual redirect checks, partial-file cleanup. Private repositories are not supported.
+- `feature/store/DraftBuilder`: only real data becomes items; anything missing stays NOT_FOUND (for example "no APK" is shown as such, never invented). README images from non-GitHub hosts are listed but never fetched.
+- `StoreViewModel` + `DraftStore`: drafts persist as JSON in private storage; imported files are stored, never executed, never extracted. APK/source archive are downloaded only on an explicit per-item action after a warning, then SHA-256 is compared with GitHub's digest when one exists (mismatch deletes the file); installing uses Android's own installer after the user allows it.
+- Original data (name, description, owner, license, source link) is kept separate from editable display data. Owner, source link and license can never be hidden. Nothing appears in "My projects" before the explicit approve button.
+- Not done yet: public publishing of projects, private repositories (needs OAuth/device flow, never a token in code), choosing arbitrary repository files.

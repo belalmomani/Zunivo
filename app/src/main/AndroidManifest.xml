@@ -3,6 +3,8 @@
 
     <!-- Needed only to query api.iconify.design and load icon images. -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Only used to hand a downloaded APK to Android's own installer after the user confirms. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".ZunivoApp"

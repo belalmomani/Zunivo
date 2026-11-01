@@ -37,6 +37,7 @@ import com.zunivo.app.feature.library.LibraryMessage
 import com.zunivo.app.feature.library.LibraryViewModel
 import com.zunivo.app.feature.search.SearchViewModel
 import com.zunivo.app.ui.screens.CollectionsScreen
+import com.zunivo.app.ui.screens.StoreScreen
 import com.zunivo.app.ui.screens.DesignersScreen
 import com.zunivo.app.ui.screens.launchShare
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -152,6 +153,7 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
                     SubScreen.FOLDERS -> CollectionsScreen(CollectionKind.FOLDER, goBack)
                     SubScreen.PACKS -> CollectionsScreen(CollectionKind.PACK, goBack)
                     SubScreen.DESIGNERS -> DesignersScreen(goBack)
+                    SubScreen.STORE -> StoreScreen(goBack)
                     SubScreen.ABOUT -> AboutScreen(goBack)
                     SubScreen.PRIVACY -> PrivacyScreen(goBack)
                     SubScreen.HELP -> HelpScreen(goBack)
