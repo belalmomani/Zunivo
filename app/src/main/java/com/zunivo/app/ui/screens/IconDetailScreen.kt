@@ -1,11 +1,8 @@
 package com.zunivo.app.ui.screens
 
-import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -28,7 +25,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zunivo.app.R
+import com.zunivo.app.domain.CollectionKind
+import com.zunivo.app.feature.library.LibraryViewModel
 import com.zunivo.app.domain.IconItem
 import com.zunivo.app.domain.LicenseKind
 import com.zunivo.app.domain.LicensePolicy
@@ -36,7 +41,14 @@ import com.zunivo.app.ui.components.ScreenHeader
 import com.zunivo.app.ui.components.SectionTitle
 
 @Composable
-fun IconDetailScreen(item: IconItem, onBack: () -> Unit, onOpenEditor: (IconItem) -> Unit) {
+fun IconDetailScreen(
+    item: IconItem,
+    onBack: () -> Unit,
+    onOpenEditor: (IconItem) -> Unit,
+    libVm: LibraryViewModel = viewModel(),
+) {
+    val lib by libVm.state.collectAsStateWithLifecycle()
+    var addTo by rememberSaveable { mutableStateOf<String?>(null) }   // null | "FOLDER" | "PACK"
     val context = LocalContext.current
     val set = item.set
     val assessment = LicensePolicy.assess(set?.licenseSpdx)
@@ -89,24 +101,36 @@ fun IconDetailScreen(item: IconItem, onBack: () -> Unit, onOpenEditor: (IconItem
                     Text(stringResource(R.string.detail_copy_attribution))
                 }
             }
-            val licenseUrl = set?.licenseUrl
-            if (licenseUrl != null) {
-                OutlinedButton(onClick = { openHttps(context, licenseUrl) }, modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.detail_open_license))
-                }
-            }
-            val authorUrl = set?.authorUrl
-            if (authorUrl != null) {
-                OutlinedButton(onClick = { openHttps(context, authorUrl) }, modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.detail_open_author))
-                }
-            }
-
+            AddDialogHost(addTo, item, libVm) { addTo = null }
             SectionTitle(stringResource(R.string.detail_next_title))
-            DisabledAction(R.string.action_add_favorite, 5)
-            DisabledAction(R.string.action_add_folder, 5)
+            OutlinedButton(onClick = { libVm.toggleFavorite(item) }, modifier = Modifier.fillMaxWidth()) {
+                Text(stringResource(if (lib.isFavorite(item.ref)) R.string.action_remove_favorite else R.string.action_add_favorite))
+            }
+            OutlinedButton(onClick = { addTo = CollectionKind.FOLDER.name }, modifier = Modifier.fillMaxWidth()) {
+                Text(stringResource(R.string.action_add_folder))
+            }
+            OutlinedButton(onClick = { addTo = CollectionKind.PACK.name }, modifier = Modifier.fillMaxWidth()) {
+                Text(stringResource(R.string.action_add_pack))
+            }
         }
     }
+}
+
+@Composable
+private fun AddDialogHost(kind: String?, item: IconItem, libVm: LibraryViewModel, onClose: () -> Unit) {
+    val lib by libVm.state.collectAsStateWithLifecycle()
+    val k = kind?.let { runCatching { CollectionKind.valueOf(it) }.getOrNull() } ?: return
+    AddToCollectionDialog(
+        kind = k,
+        collections = lib.library.collections,
+        onPick = { id -> libVm.addToCollection(id, item); onClose() },
+        onCreate = { name ->
+            val id = libVm.createCollection(k, name)
+            libVm.addToCollection(id, item)
+            onClose()
+        },
+        onDismiss = onClose,
+    )
 }
 
 @Composable
@@ -114,13 +138,6 @@ private fun InfoRow(label: String, value: String) {
     Column {
         Text(label, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Text(value, style = MaterialTheme.typography.bodyLarge)
-    }
-}
-
-@Composable
-private fun DisabledAction(labelRes: Int, phase: Int) {
-    OutlinedButton(onClick = {}, enabled = false, modifier = Modifier.fillMaxWidth()) {
-        Text(stringResource(labelRes) + " - " + stringResource(R.string.badge_phase, phase))
     }
 }
 
@@ -140,12 +157,3 @@ private fun copy(context: Context, text: String) {
     Toast.makeText(context, R.string.detail_copied, Toast.LENGTH_SHORT).show()
 }
 
-/** Only https links from the API are opened, and only via the system browser. */
-private fun openHttps(context: Context, url: String) {
-    if (!url.startsWith("https://")) return
-    try {
-        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-    } catch (e: ActivityNotFoundException) {
-        Toast.makeText(context, R.string.detail_no_browser, Toast.LENGTH_SHORT).show()
-    }
-}

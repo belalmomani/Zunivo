@@ -191,7 +191,7 @@ private fun ResultsArea(state: SearchUiState, vm: SearchViewModel) {
 }
 
 @Composable
-private fun IconTile(item: IconItem, onClick: () -> Unit) {
+internal fun IconTile(item: IconItem, onClick: () -> Unit) {
     Surface(
         modifier = Modifier.clip(RoundedCornerShape(14.dp)).clickable(onClick = onClick),
         shape = RoundedCornerShape(14.dp),

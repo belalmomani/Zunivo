@@ -263,7 +263,7 @@ private fun Workspace(session: EditSession, busy: Boolean, vm: EditorViewModel) 
 }
 
 @Composable
-private fun ColorPicker(title: String, selected: String?, noneLabel: String, onSelect: (String?) -> Unit) {
+internal fun ColorPicker(title: String, selected: String?, noneLabel: String, onSelect: (String?) -> Unit) {
     var custom by rememberSaveable(selected) { mutableStateOf(selected.orEmpty()) }
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         SectionTitle(title)
@@ -392,7 +392,7 @@ private fun messageRes(m: EditorMessage): Int = when (m) {
 }
 
 /** Shares the exported file through the system share sheet (so the user chooses where it is saved). */
-private fun launchShare(context: Context, share: ShareRequest) {
+internal fun launchShare(context: Context, share: ShareRequest) {
     try {
         val uri = FileProvider.getUriForFile(context, "com.zunivo.app.fileprovider", share.file)
         val send = Intent(Intent.ACTION_SEND).apply {

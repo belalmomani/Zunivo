@@ -17,8 +17,11 @@ val NavySurface = Color(0xFF141A30)
 
 private val DarkColors = darkColorScheme(
     primary = Indigo,
+    onPrimary = Color.White,
     secondary = Violet,
+    onSecondary = Color.White,
     tertiary = Cyan,
+    onTertiary = Color(0xFF00232B),
     background = NavyBackground,
     surface = NavySurface,
     onBackground = Color(0xFFF1F3FF),

@@ -28,6 +28,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -38,6 +41,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import com.zunivo.app.R
+import com.zunivo.app.feature.library.LibraryViewModel
 import com.zunivo.app.domain.HexColor
 import com.zunivo.app.feature.search.Category
 import com.zunivo.app.feature.search.ErrorKind
@@ -83,8 +87,9 @@ fun ImageStudioScreen(onBack: () -> Unit, vm: StudioViewModel = viewModel()) {
 }
 
 @Composable
-private fun ProfileSection(state: StudioUiState, vm: StudioViewModel) {
+private fun ProfileSection(state: StudioUiState, vm: StudioViewModel, libVm: LibraryViewModel = viewModel()) {
     val profile = state.profile ?: return
+    var naming by rememberSaveable { mutableStateOf(false) }
     val simplicityLabel = stringResource(
         when (profile.simplicity) {
             Simplicity.SIMPLE -> R.string.studio_simple
@@ -203,11 +208,22 @@ private fun ProfileSection(state: StudioUiState, vm: StudioViewModel) {
                 OutlinedButton(onClick = vm::shuffle, modifier = Modifier.weight(1f)) {
                     Text(stringResource(R.string.studio_shuffle))
                 }
-                OutlinedButton(onClick = {}, enabled = false, modifier = Modifier.weight(1f)) {
-                    Text(stringResource(R.string.studio_create_pack) + " - " + stringResource(R.string.badge_phase, 5))
+                Button(onClick = { naming = true }, enabled = kept > 0, modifier = Modifier.weight(1f)) {
+                    Text(stringResource(R.string.studio_create_pack))
                 }
             }
         }
+    }
+    if (naming) {
+        NameDialog(
+            title = stringResource(R.string.new_pack),
+            initial = stringResource(R.string.studio_pack_default_name),
+            onConfirm = { name ->
+                libVm.createPackFrom(name, state.included().map { it.item }, state.colorHex)
+                naming = false
+            },
+            onDismiss = { naming = false },
+        )
     }
     Spacer(Modifier.height(16.dp))
 }

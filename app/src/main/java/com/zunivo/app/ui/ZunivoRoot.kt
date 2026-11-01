@@ -27,7 +27,18 @@ import com.zunivo.app.i18n.AppLanguage
 import com.zunivo.app.ui.navigation.NavState
 import com.zunivo.app.ui.navigation.SubScreen
 import com.zunivo.app.ui.navigation.Tab
+import android.widget.Toast
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.zunivo.app.domain.CollectionKind
 import com.zunivo.app.feature.editor.EditorViewModel
+import com.zunivo.app.feature.library.LibraryMessage
+import com.zunivo.app.feature.library.LibraryViewModel
+import com.zunivo.app.feature.search.SearchViewModel
+import com.zunivo.app.ui.screens.CollectionsScreen
+import com.zunivo.app.ui.screens.DesignersScreen
+import com.zunivo.app.ui.screens.launchShare
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zunivo.app.ui.screens.AboutScreen
 import com.zunivo.app.ui.screens.EditorScreen
@@ -75,6 +86,24 @@ fun ZunivoRoot(currentLanguage: AppLanguage, onLanguageChange: (AppLanguage) -> 
 private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLanguage) -> Unit) {
     var nav by rememberSaveable(stateSaver = NavStateSaver) { mutableStateOf(NavState()) }
     val editorVm: EditorViewModel = viewModel()
+    val libVm: LibraryViewModel = viewModel()
+    val searchVm: SearchViewModel = viewModel()
+    val context = LocalContext.current
+    val lib by libVm.state.collectAsStateWithLifecycle()
+    val libMessage = lib.message
+    LaunchedEffect(libMessage, lib.args) {
+        if (libMessage != null) {
+            Toast.makeText(context, libraryMessageText(context, libMessage, lib.args), Toast.LENGTH_SHORT).show()
+            libVm.consumeMessage()
+        }
+    }
+    val libShare = lib.share
+    LaunchedEffect(libShare) {
+        if (libShare != null) {
+            launchShare(context, libShare)
+            libVm.consumeShare()
+        }
+    }
     BackHandler(enabled = nav.canGoBack()) { nav = nav.back() }
 
     Scaffold(
@@ -103,7 +132,10 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
                         editorVm.open(item)
                         nav = nav.open(SubScreen.EDITOR)
                     })
-                    Tab.FAVORITES -> FavoritesScreen()
+                    Tab.FAVORITES -> FavoritesScreen(onOpenIcon = { item ->
+                        searchVm.select(item)
+                        nav = nav.selectTab(Tab.SEARCH)
+                    })
                     Tab.MORE -> MoreScreen(onOpen = { screen -> nav = nav.open(screen) })
                 }
             } else {
@@ -117,6 +149,9 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
                     )
                     SubScreen.EDITOR -> EditorScreen(onBack = goBack, onGoSearch = { nav = nav.selectTab(Tab.SEARCH) }, vm = editorVm)
                     SubScreen.STUDIO -> ImageStudioScreen(onBack = goBack)
+                    SubScreen.FOLDERS -> CollectionsScreen(CollectionKind.FOLDER, goBack)
+                    SubScreen.PACKS -> CollectionsScreen(CollectionKind.PACK, goBack)
+                    SubScreen.DESIGNERS -> DesignersScreen(goBack)
                     SubScreen.ABOUT -> AboutScreen(goBack)
                     SubScreen.PRIVACY -> PrivacyScreen(goBack)
                     SubScreen.HELP -> HelpScreen(goBack)
@@ -125,4 +160,21 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
             }
         }
     }
+}
+
+private fun libraryMessageText(context: android.content.Context, m: LibraryMessage, args: List<Int>): String = when (m) {
+    LibraryMessage.CREATED -> context.getString(R.string.msg_created)
+    LibraryMessage.RENAMED -> context.getString(R.string.msg_renamed)
+    LibraryMessage.DUPLICATED -> context.getString(R.string.msg_duplicated)
+    LibraryMessage.DELETED -> context.getString(R.string.msg_deleted)
+    LibraryMessage.ADDED -> context.getString(R.string.msg_added)
+    LibraryMessage.ALREADY_THERE -> context.getString(R.string.msg_already_there)
+    LibraryMessage.FULL -> context.getString(R.string.msg_collection_full, args.firstOrNull() ?: 0)
+    LibraryMessage.FAVORITE_ADDED -> context.getString(R.string.msg_favorite_added)
+    LibraryMessage.FAVORITE_REMOVED -> context.getString(R.string.msg_favorite_removed)
+    LibraryMessage.EXPORTED -> context.getString(R.string.msg_pack_exported, args.getOrElse(0) { 0 }, args.getOrElse(1) { 0 })
+    LibraryMessage.EXPORT_EMPTY -> context.getString(R.string.msg_export_empty)
+    LibraryMessage.EXPORT_FAILED -> context.getString(R.string.msg_export_failed)
+    LibraryMessage.OFFLINE -> context.getString(R.string.msg_offline)
+    LibraryMessage.STARTER_FAILED -> context.getString(R.string.msg_starter_failed)
 }

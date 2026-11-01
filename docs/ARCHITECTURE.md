@@ -38,3 +38,10 @@ AGP 9.2.1 (built-in Kotlin) · Gradle 9.4.1 · Kotlin 2.3.21 · Compose BOM 2026
 - `feature/editor/EditorViewModel`: save/reopen/delete (JSON file in private storage, `data/local`), export SVG/PNG (PNG rendered with AndroidSVG), share via FileProvider. A no-derivatives license blocks modified copies; unknown licenses show a warning.
 - `feature/studio`: on-device palette extraction (bucketed colours), simplicity estimate (colours + edges), HSL harmony; icon suggestions come from category keywords on Iconify. The image is never uploaded and no AI service is used.
 - Packs/ZIP export, folders and favorites remain phase 5.
+
+## Phase 5: favorites, folders, packs (implemented, not yet built)
+- `domain/LibraryModels` + `LibraryOps`: favourites, folders and packs as one `IconCollection` model (max 200 icons); every entry keeps a snapshot of set/author/license. Pure and unit-tested.
+- `data/local/LibraryStore`: `library.json` in private storage (atomic write); no account needed; survives restarts.
+- `feature/library/LibraryViewModel`: create / rename / duplicate / delete / reorder / rename files / pack colour; ready-made packs are built live from Iconify search (`StarterPacks`).
+- `PackExporter`: ZIP with `svg/*.svg`, `README.md`, `LICENSES.txt`, `colors.json`, `preview.png`; `PackPlanner` excludes unknown, unrecognized, non-commercial and no-derivatives licenses; the archive is re-opened and read back before sharing.
+- Designer pages: `docs/supabase/schema.sql` (tables + RLS, real download counts, report table). The app screen says "not connected"; no fake designers. The service_role key must never be in the app.
