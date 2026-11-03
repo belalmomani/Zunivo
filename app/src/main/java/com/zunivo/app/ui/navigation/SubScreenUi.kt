@@ -2,6 +2,7 @@ package com.zunivo.app.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
@@ -9,6 +10,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
@@ -27,6 +29,8 @@ fun SubScreen.titleRes(): Int = when (this) {
     SubScreen.HELP -> R.string.menu_help
     SubScreen.PRIVACY -> R.string.menu_privacy
     SubScreen.ABOUT -> R.string.menu_about
+    SubScreen.UPDATE -> R.string.menu_update
+    SubScreen.LICENSES -> R.string.menu_licenses
 }
 
 fun SubScreen.icon(): ImageVector = when (this) {
@@ -41,6 +45,8 @@ fun SubScreen.icon(): ImageVector = when (this) {
     SubScreen.HELP -> Icons.Filled.Email
     SubScreen.PRIVACY -> Icons.Filled.Lock
     SubScreen.ABOUT -> Icons.Filled.Info
+    SubScreen.UPDATE -> Icons.Filled.Refresh
+    SubScreen.LICENSES -> Icons.Filled.CheckCircle
 }
 
 /** Phase of the execution plan in which the feature becomes real (see docs/PLAN.md). */

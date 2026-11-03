@@ -53,7 +53,7 @@
 
     <string name="privacy_title">Privacy</string>
     <string name="privacy_draft">Draft - updated as features are added</string>
-    <string name="privacy_body">Zunivo itself collects no personal data and has no accounts. When you search, your search words are sent to the public Iconify API (api.iconify.design), and icon images are loaded from it; Iconify may log requests under its own policy. Images you choose in Image to icon set are analyzed on the phone and are never uploaded. Exported files are created on the phone and shared only where you choose. Any future feature that uses your accounts will explain what data it uses and ask for your consent first.</string>
+    <string name="privacy_body">Zunivo itself collects no personal data and has no accounts. When you search, your search words are sent to the public Iconify API (api.iconify.design), and icon images are loaded from it; Iconify may log requests under its own policy. Images you choose in Image to icon set are analyzed on the phone and are never uploaded. Exported files are created on the phone and shared only where you choose. Import in My store contacts only GitHub, and downloads happen only when you ask. If ads are active in your build, the Start.io SDK shows a banner, may use device identifiers and shows its own consent notice; ads are never required to use a feature. Update checks contact GitHub Releases.</string>
 
     <string name="help_title">Help</string>
     <string name="help_body">Type a keyword in Search or pick a category to find icons. Tap an icon to see its set, author and license. Change the language from Settings. Features marked as a later phase will be enabled as the app grows.</string>
@@ -341,4 +341,33 @@
     <string name="store_msg_unverified">Downloaded. No checksum was available to verify it.</string>
     <string name="store_msg_updated">Project updated</string>
     <string name="store_msg_no_changes">No changes on GitHub</string>
+
+    <string name="menu_update">Updates</string>
+    <string name="menu_licenses">Licenses</string>
+    <string name="update_installed">Installed version: %1$s (code %2$d)</string>
+    <string name="update_ads_off">Ads: off in this build (no Start.io App ID was provided).</string>
+    <string name="update_ads_test">Ads: Start.io test ads (development build).</string>
+    <string name="update_ads_on">Ads: Start.io banner. Ads are never required to use a feature.</string>
+    <string name="update_changelog_title">What changed</string>
+    <string name="changelog_text">0.1.0 - first version\n- Icon search on Iconify with categories and license details\n- Icon editor with PNG and SVG export\n- Image to icon set (colors analyzed on the phone)\n- Favorites, folders and packs with ZIP export\n- My store: GitHub import with item-by-item review\n- Arabic and English</string>
+    <string name="update_play_note">This build is meant for Google Play, so it updates only through Google Play.</string>
+    <string name="update_how">Updates come from this project\'s GitHub Releases. Android will ask you to confirm the install; nothing is installed silently.</string>
+    <string name="update_check">Check for updates</string>
+    <string name="update_up_to_date">You have the latest version.</string>
+    <string name="update_no_release">No release with an APK has been published yet.</string>
+    <string name="update_available">New version %1$s</string>
+    <string name="update_warning">The file is checked after download (checksum when available, package name, version and signing certificate) before you can install it.</string>
+    <string name="update_download">Download update</string>
+    <string name="update_signature_ok">Package name, newer version and signing certificate match the installed app.</string>
+    <string name="update_checksum_ok">Checksum verified.</string>
+    <string name="update_checksum_none">No checksum was published for this file, so only the package and signature were checked.</string>
+    <string name="update_install">Install update</string>
+    <string name="update_err_checksum">The downloaded file does not match its checksum. It was deleted.</string>
+    <string name="update_err_package">The file is for a different app. It was deleted.</string>
+    <string name="update_err_not_newer">The file is not newer than the installed version. It was deleted.</string>
+    <string name="update_err_signature">The file is signed with a different key than the installed app, so Android could not update it. It was deleted.</string>
+    <string name="update_err_unreadable">The file could not be read as an app package. It was deleted.</string>
+    <string name="licenses_icons_note">Icons come from Iconify. Each icon set has its own license; Zunivo shows the license and author of every icon you open and keeps them in exports.</string>
+    <string name="licenses_libraries">Open-source libraries</string>
+    <string name="licenses_list">Jetpack Compose and AndroidX - Apache 2.0\nCoil (image loading) - Apache 2.0\nAndroidSVG (SVG rendering) - Apache 2.0\nOkHttp (used by Coil) - Apache 2.0\nStart.io SDK (ads) - provided under Start.io terms\nIconify API - icon sets under their own licenses</string>
 </resources>

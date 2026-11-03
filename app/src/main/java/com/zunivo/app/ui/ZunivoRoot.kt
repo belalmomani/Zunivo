@@ -2,6 +2,7 @@ package com.zunivo.app.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -36,7 +37,10 @@ import com.zunivo.app.feature.editor.EditorViewModel
 import com.zunivo.app.feature.library.LibraryMessage
 import com.zunivo.app.feature.library.LibraryViewModel
 import com.zunivo.app.feature.search.SearchViewModel
+import com.zunivo.app.ui.components.AdBanner
 import com.zunivo.app.ui.screens.CollectionsScreen
+import com.zunivo.app.ui.screens.LicensesScreen
+import com.zunivo.app.ui.screens.UpdateScreen
 import com.zunivo.app.ui.screens.StoreScreen
 import com.zunivo.app.ui.screens.DesignersScreen
 import com.zunivo.app.ui.screens.launchShare
@@ -109,6 +113,8 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
 
     Scaffold(
         bottomBar = {
+            Column {
+            AdBanner()
             NavigationBar {
                 tabs.forEach { item ->
                     NavigationBarItem(
@@ -118,6 +124,7 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
                         label = { Text(stringResource(item.labelRes)) },
                     )
                 }
+            }
             }
         },
     ) { padding ->
@@ -154,6 +161,8 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
                     SubScreen.PACKS -> CollectionsScreen(CollectionKind.PACK, goBack)
                     SubScreen.DESIGNERS -> DesignersScreen(goBack)
                     SubScreen.STORE -> StoreScreen(goBack)
+                    SubScreen.UPDATE -> UpdateScreen(goBack)
+                    SubScreen.LICENSES -> LicensesScreen(goBack)
                     SubScreen.ABOUT -> AboutScreen(goBack)
                     SubScreen.PRIVACY -> PrivacyScreen(goBack)
                     SubScreen.HELP -> HelpScreen(goBack)

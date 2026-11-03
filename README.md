@@ -6,7 +6,7 @@ and a personal store that imports GitHub projects into reviewable drafts.
 Package: `com.zunivo.app` · Repo: https://github.com/belalmomani/Zunivo
 
 ## Status
-Phase 6 of 9 (My store: GitHub import and review; designer pages still need Supabase).
+Phase 7 of 9 (ads and in-app updates). Release process: docs/RELEASING.md.
 
 ## Build
 CI (GitHub Actions) builds and tests on every push: `.github/workflows/android.yml`.

@@ -3,6 +3,7 @@ package com.zunivo.app.data.remote
 import com.zunivo.app.domain.Fetched
 import com.zunivo.app.domain.GitHubHosts
 import com.zunivo.app.domain.ReleaseInfo
+import com.zunivo.app.domain.ReleaseUpdate
 import com.zunivo.app.domain.RepoInfo
 import com.zunivo.app.domain.RepoRef
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +37,17 @@ class GitHubApi {
     suspend fun repo(ref: RepoRef): RepoInfo = withContext(Dispatchers.IO) {
         val text = getText("$api/repos/${ref.owner}/${ref.repo}")
         try { GitHubParser.parseRepo(text) } catch (e: JSONException) { throw GitHubException.BadData() }
+    }
+
+    /** Latest published (non-draft, non-prerelease) release with an APK; null if there is none. */
+    suspend fun latestRelease(ref: RepoRef): ReleaseUpdate? = withContext(Dispatchers.IO) {
+        try {
+            UpdateParser.parseLatest(getText("$api/repos/${ref.owner}/${ref.repo}/releases/latest"))
+        } catch (e: GitHubException.NotFound) {
+            null
+        } catch (e: JSONException) {
+            throw GitHubException.BadData()
+        }
     }
 
     suspend fun readme(ref: RepoRef): Fetched<String> = optionalText("$api/repos/${ref.owner}/${ref.repo}/readme")

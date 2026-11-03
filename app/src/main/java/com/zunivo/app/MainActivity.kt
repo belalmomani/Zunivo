@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.zunivo.app.ads.AdsConfig
 import com.zunivo.app.i18n.LocaleManager
 import com.zunivo.app.ui.ZunivoRoot
 import com.zunivo.app.ui.theme.ZunivoTheme
@@ -17,6 +18,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AdsConfig.prepare()
         enableEdgeToEdge()
         setContent {
             ZunivoTheme {

@@ -53,7 +53,7 @@
 
     <string name="privacy_title">الخصوصية</string>
     <string name="privacy_draft">مسودة تُحدَّث مع إضافة الميزات</string>
-    <string name="privacy_body">زينوفو نفسه لا يجمع بيانات شخصية ولا يتطلب حسابًا. عند البحث تُرسل كلمات البحث إلى واجهة Iconify العامة (api.iconify.design) وتُحمَّل منها صور الأيقونات، وقد تسجّل Iconify الطلبات وفق سياستها الخاصة. الصور التي تختارها في «من صورة إلى مجموعة أيقونات» تُحلَّل على الهاتف ولا تُرفع أبدًا. والملفات المصدَّرة تُنشأ على الهاتف وتُشارك حيث تختار فقط. وأي ميزة قادمة تستخدم حساباتك ستوضح البيانات المستخدمة وتطلب موافقتك أولًا.</string>
+    <string name="privacy_body">زينوفو نفسه لا يجمع بيانات شخصية ولا يتطلب حسابًا. عند البحث تُرسل كلمات البحث إلى واجهة Iconify العامة (api.iconify.design) وتُحمَّل منها صور الأيقونات، وقد تسجّل Iconify الطلبات وفق سياستها الخاصة. الصور التي تختارها في «من صورة إلى مجموعة أيقونات» تُحلَّل على الهاتف ولا تُرفع أبدًا. والملفات المصدَّرة تُنشأ على الهاتف وتُشارك حيث تختار فقط. والاستيراد في «متجري» يتصل بـ GitHub وحده، ولا يحدث تنزيل إلا حين تطلب. وإذا كانت الإعلانات مفعّلة في نسختك فإن حزمة Start.io تعرض بانرًا وقد تستخدم معرّفات الجهاز وتعرض إشعار الموافقة الخاص بها، والإعلانات ليست شرطًا لاستخدام أي ميزة. وفحص التحديثات يتصل بإصدارات GitHub.</string>
 
     <string name="help_title">المساعدة</string>
     <string name="help_body">اكتب كلمة في تبويب البحث أو اختر تصنيفًا للعثور على الأيقونات. اضغط على أيقونة لعرض مجموعتها ومؤلفها وترخيصها. غيّر اللغة من الإعدادات. الميزات المرتبطة بمراحل لاحقة ستُفعَّل مع نمو التطبيق.</string>
@@ -341,4 +341,33 @@
     <string name="store_msg_unverified">تم التنزيل. لم يتوفر مجموع اختباري للتحقق.</string>
     <string name="store_msg_updated">تم تحديث المشروع</string>
     <string name="store_msg_no_changes">لا توجد تغييرات على GitHub</string>
+
+    <string name="menu_update">التحديثات</string>
+    <string name="menu_licenses">التراخيص</string>
+    <string name="update_installed">الإصدار المثبّت: %1$s (الرمز %2$d)</string>
+    <string name="update_ads_off">الإعلانات: متوقفة في هذا الإصدار (لم يُقدَّم معرّف تطبيق Start.io).</string>
+    <string name="update_ads_test">الإعلانات: إعلانات اختبار من Start.io (نسخة تطوير).</string>
+    <string name="update_ads_on">الإعلانات: بانر Start.io. الإعلانات ليست شرطًا لاستخدام أي ميزة.</string>
+    <string name="update_changelog_title">ما الجديد</string>
+    <string name="changelog_text">0.1.0 - النسخة الأولى\n- البحث عن الأيقونات في Iconify مع التصنيفات وتفاصيل الترخيص\n- محرر أيقونات مع تصدير PNG وSVG\n- من صورة إلى مجموعة أيقونات (تحليل الألوان على الهاتف)\n- المفضلة والمجلدات والحزم مع تصدير ZIP\n- متجري: استيراد من GitHub مع مراجعة عنصرًا عنصرًا\n- العربية والإنجليزية</string>
+    <string name="update_play_note">هذا الإصدار مخصص لمتجر Google Play، لذلك يتحدّث عبر Google Play فقط.</string>
+    <string name="update_how">تأتي التحديثات من إصدارات GitHub لهذا المشروع. سيطلب أندرويد تأكيدك للتثبيت، ولا يُثبَّت شيء بصمت.</string>
+    <string name="update_check">التحقق من التحديثات</string>
+    <string name="update_up_to_date">لديك أحدث إصدار.</string>
+    <string name="update_no_release">لم يُنشر بعد أي إصدار يحتوي على ملف APK.</string>
+    <string name="update_available">إصدار جديد %1$s</string>
+    <string name="update_warning">يُفحص الملف بعد التنزيل (المجموع الاختباري عند توفره، واسم الحزمة، والإصدار، وشهادة التوقيع) قبل أن تتمكن من تثبيته.</string>
+    <string name="update_download">تنزيل التحديث</string>
+    <string name="update_signature_ok">اسم الحزمة والإصدار الأحدث وشهادة التوقيع تطابق التطبيق المثبّت.</string>
+    <string name="update_checksum_ok">تم التحقق من المجموع الاختباري.</string>
+    <string name="update_checksum_none">لم يُنشر مجموع اختباري لهذا الملف، ففُحصت الحزمة والتوقيع فقط.</string>
+    <string name="update_install">تثبيت التحديث</string>
+    <string name="update_err_checksum">الملف المنزَّل لا يطابق مجموعه الاختباري. حُذف.</string>
+    <string name="update_err_package">الملف لتطبيق مختلف. حُذف.</string>
+    <string name="update_err_not_newer">الملف ليس أحدث من الإصدار المثبّت. حُذف.</string>
+    <string name="update_err_signature">الملف موقَّع بمفتاح مختلف عن التطبيق المثبّت، فلن يتمكن أندرويد من تحديثه. حُذف.</string>
+    <string name="update_err_unreadable">تعذّرت قراءة الملف كحزمة تطبيق. حُذف.</string>
+    <string name="licenses_icons_note">الأيقونات من Iconify. لكل مجموعة أيقونات ترخيصها الخاص، ويعرض زينوفو ترخيص كل أيقونة تفتحها ومؤلفها ويحتفظ بهما في التصدير.</string>
+    <string name="licenses_libraries">المكتبات مفتوحة المصدر</string>
+    <string name="licenses_list">Jetpack Compose وAndroidX - Apache 2.0\nCoil (تحميل الصور) - Apache 2.0\nAndroidSVG (عرض SVG) - Apache 2.0\nOkHttp (تستخدمها Coil) - Apache 2.0\nStart.io SDK (الإعلانات) - بشروط Start.io\nواجهة Iconify - مجموعات أيقونات بتراخيصها الخاصة</string>
 </resources>

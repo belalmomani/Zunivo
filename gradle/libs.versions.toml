@@ -9,6 +9,7 @@ junit = "4.13.2"
 coil = "3.4.0"
 orgJson = "20240303"
 androidSvg = "1.4"
+startapp = "5.3.1"
 
 [libraries]
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -27,6 +28,7 @@ coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 junit = { module = "junit:junit", version.ref = "junit" }
 androidsvg = { module = "com.caverock:androidsvg-aar", version.ref = "androidSvg" }
+startapp-inapp = { module = "com.startapp:inapp-sdk", version.ref = "startapp" }
 org-json = { module = "org.json:json", version.ref = "orgJson" }
 
 [plugins]

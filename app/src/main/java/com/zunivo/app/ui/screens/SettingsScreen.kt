@@ -45,7 +45,7 @@ fun SettingsScreen(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             SectionTitle(stringResource(R.string.menu_about))
-            listOf(SubScreen.PRIVACY, SubScreen.HELP, SubScreen.ABOUT).forEach { screen ->
+            listOf(SubScreen.UPDATE, SubScreen.LICENSES, SubScreen.PRIVACY, SubScreen.HELP, SubScreen.ABOUT).forEach { screen ->
                 ActionCard(screen.icon(), stringResource(screen.titleRes()), { onOpen(screen) })
             }
         }

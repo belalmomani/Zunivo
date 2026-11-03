@@ -1,0 +1,56 @@
+name: Release
+# Publishes a signed APK + checksum to GitHub Releases when you push a tag like v0.2.0.
+# Required repository secrets: ZUNIVO_KEYSTORE_BASE64, ZUNIVO_KEYSTORE_PASSWORD, ZUNIVO_KEY_ALIAS, ZUNIVO_KEY_PASSWORD.
+# Optional: STARTIO_APP_ID (production ads). Without the keystore secrets the job stops and publishes nothing.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 9.4.1
+      - name: Tag must match versionName
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          NAME=$(grep -oP 'versionName = "\K[^"]+' app/build.gradle.kts)
+          if [ "$TAG" != "$NAME" ]; then echo "Tag $TAG does not match versionName $NAME"; exit 1; fi
+      - name: Decode signing key
+        env:
+          KEYSTORE_B64: ${{ secrets.ZUNIVO_KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$KEYSTORE_B64" ]; then echo "No signing key secret: refusing to publish an unsigned release"; exit 1; fi
+          echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/zunivo.jks"
+      - name: Unit tests
+        run: gradle :app:testDebugUnitTest --stacktrace
+      - name: Build signed release APK
+        env:
+          ZUNIVO_KEYSTORE_PATH: ${{ runner.temp }}/zunivo.jks
+          ZUNIVO_KEYSTORE_PASSWORD: ${{ secrets.ZUNIVO_KEYSTORE_PASSWORD }}
+          ZUNIVO_KEY_ALIAS: ${{ secrets.ZUNIVO_KEY_ALIAS }}
+          ZUNIVO_KEY_PASSWORD: ${{ secrets.ZUNIVO_KEY_PASSWORD }}
+          STARTIO_APP_ID: ${{ secrets.STARTIO_APP_ID }}
+        run: gradle :app:assembleRelease --stacktrace
+      - name: Collect files
+        run: |
+          mkdir -p dist
+          cp app/build/outputs/apk/release/*.apk "dist/Zunivo-${GITHUB_REF_NAME}.apk"
+          (cd dist && sha256sum "Zunivo-${GITHUB_REF_NAME}.apk" > "Zunivo-${GITHUB_REF_NAME}.apk.sha256")
+          bash scripts/update_project_info.sh SUCCESS "SIGNED with the project release key"
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/* PROJECT_INFO.txt \
+            --title "Zunivo $GITHUB_REF_NAME" --generate-notes
