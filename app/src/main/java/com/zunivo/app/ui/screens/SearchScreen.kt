@@ -20,6 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
@@ -40,6 +41,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.zunivo.app.domain.PrefsOps
+import com.zunivo.app.feature.prefs.PrefsViewModel
 import com.zunivo.app.R
 import com.zunivo.app.domain.IconItem
 import com.zunivo.app.feature.search.Category
@@ -53,19 +57,25 @@ import com.zunivo.app.ui.components.EmptyState
 import com.zunivo.app.ui.components.ScreenHeader
 
 @Composable
-fun SearchScreen(onOpenEditor: (IconItem) -> Unit, vm: SearchViewModel = viewModel()) {
+fun SearchScreen(
+    onOpenEditor: (IconItem) -> Unit,
+    vm: SearchViewModel = viewModel(),
+    prefsVm: PrefsViewModel = viewModel(),
+) {
     val state by vm.state.collectAsStateWithLifecycle()
     val selected = state.selected
     if (selected != null) {
         BackHandler { vm.select(null) }
         IconDetailScreen(item = selected, onBack = { vm.select(null) }, onOpenEditor = onOpenEditor)
     } else {
-        SearchContent(state, vm)
+        SearchContent(state, vm, prefsVm)
     }
 }
 
 @Composable
-private fun SearchContent(state: SearchUiState, vm: SearchViewModel) {
+private fun SearchContent(state: SearchUiState, vm: SearchViewModel, prefsVm: PrefsViewModel) {
+    val prefs by prefsVm.prefs.collectAsStateWithLifecycle()
+    val orderedCategories = PrefsOps.orderCategories(prefs, Category.entries.map { it.name }).map { Category.valueOf(it) }
     Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         ScreenHeader(stringResource(R.string.nav_search))
         OutlinedTextField(
@@ -76,14 +86,27 @@ private fun SearchContent(state: SearchUiState, vm: SearchViewModel) {
             placeholder = { Text(stringResource(R.string.search_hint)) },
             leadingIcon = { Icon(Icons.Filled.Search, contentDescription = null) },
         )
+        if (prefs.keepSearchHistory && prefs.searchHistory.isNotEmpty() && state.query.isBlank()) {
+            LazyRow(
+                contentPadding = PaddingValues(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                items(prefs.searchHistory) { q ->
+                    AssistChip(onClick = { vm.onQueryChange(q) }, label = { Text(q) })
+                }
+            }
+        }
         LazyRow(
             contentPadding = PaddingValues(horizontal = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            items(Category.entries) { category ->
+            items(orderedCategories) { category ->
                 FilterChip(
                     selected = state.category == category,
-                    onClick = { vm.onCategory(if (state.category == category) null else category) },
+                    onClick = {
+                        if (state.category != category) prefsVm.recordCategory(category.name)
+                        vm.onCategory(if (state.category == category) null else category)
+                    },
                     label = { Text(stringResource(category.labelRes)) },
                 )
             }
@@ -123,12 +146,12 @@ private fun SearchContent(state: SearchUiState, vm: SearchViewModel) {
                 color = MaterialTheme.colorScheme.tertiary,
             )
         }
-        Box(Modifier.weight(1f).fillMaxWidth()) { ResultsArea(state, vm) }
+        Box(Modifier.weight(1f).fillMaxWidth()) { ResultsArea(state, vm) { prefsVm.recordSearch(state.query) } }
     }
 }
 
 @Composable
-private fun ResultsArea(state: SearchUiState, vm: SearchViewModel) {
+private fun ResultsArea(state: SearchUiState, vm: SearchViewModel, onOpened: () -> Unit) {
     when (state.status) {
         SearchStatus.IDLE -> EmptyState(
             Icons.Filled.Search,
@@ -169,7 +192,7 @@ private fun ResultsArea(state: SearchUiState, vm: SearchViewModel) {
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     items(visible, key = { it.ref.id }) { item ->
-                        IconTile(item) { vm.select(item) }
+                        IconTile(item) { onOpened(); vm.select(item) }
                     }
                     if (filtered.size > state.shown || state.hasMore) {
                         item(span = { GridItemSpan(maxLineSpan) }) {

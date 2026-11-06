@@ -4,6 +4,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Info
@@ -31,6 +33,8 @@ fun SubScreen.titleRes(): Int = when (this) {
     SubScreen.ABOUT -> R.string.menu_about
     SubScreen.UPDATE -> R.string.menu_update
     SubScreen.LICENSES -> R.string.menu_licenses
+    SubScreen.PREFERENCES -> R.string.menu_preferences
+    SubScreen.STORAGE -> R.string.menu_storage
 }
 
 fun SubScreen.icon(): ImageVector = when (this) {
@@ -47,6 +51,8 @@ fun SubScreen.icon(): ImageVector = when (this) {
     SubScreen.ABOUT -> Icons.Filled.Info
     SubScreen.UPDATE -> Icons.Filled.Refresh
     SubScreen.LICENSES -> Icons.Filled.CheckCircle
+    SubScreen.PREFERENCES -> Icons.Filled.Person
+    SubScreen.STORAGE -> Icons.Filled.Delete
 }
 
 /** Phase of the execution plan in which the feature becomes real (see docs/PLAN.md). */

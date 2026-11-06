@@ -53,7 +53,6 @@
 
     <string name="privacy_title">الخصوصية</string>
     <string name="privacy_draft">مسودة تُحدَّث مع إضافة الميزات</string>
-    <string name="privacy_body">زينوفو نفسه لا يجمع بيانات شخصية ولا يتطلب حسابًا. عند البحث تُرسل كلمات البحث إلى واجهة Iconify العامة (api.iconify.design) وتُحمَّل منها صور الأيقونات، وقد تسجّل Iconify الطلبات وفق سياستها الخاصة. الصور التي تختارها في «من صورة إلى مجموعة أيقونات» تُحلَّل على الهاتف ولا تُرفع أبدًا. والملفات المصدَّرة تُنشأ على الهاتف وتُشارك حيث تختار فقط. والاستيراد في «متجري» يتصل بـ GitHub وحده، ولا يحدث تنزيل إلا حين تطلب. وإذا كانت الإعلانات مفعّلة في نسختك فإن حزمة Start.io تعرض بانرًا وقد تستخدم معرّفات الجهاز وتعرض إشعار الموافقة الخاص بها، والإعلانات ليست شرطًا لاستخدام أي ميزة. وفحص التحديثات يتصل بإصدارات GitHub.</string>
 
     <string name="help_title">المساعدة</string>
     <string name="help_body">اكتب كلمة في تبويب البحث أو اختر تصنيفًا للعثور على الأيقونات. اضغط على أيقونة لعرض مجموعتها ومؤلفها وترخيصها. غيّر اللغة من الإعدادات. الميزات المرتبطة بمراحل لاحقة ستُفعَّل مع نمو التطبيق.</string>
@@ -370,4 +369,44 @@
     <string name="licenses_icons_note">الأيقونات من Iconify. لكل مجموعة أيقونات ترخيصها الخاص، ويعرض زينوفو ترخيص كل أيقونة تفتحها ومؤلفها ويحتفظ بهما في التصدير.</string>
     <string name="licenses_libraries">المكتبات مفتوحة المصدر</string>
     <string name="licenses_list">Jetpack Compose وAndroidX - Apache 2.0\nCoil (تحميل الصور) - Apache 2.0\nAndroidSVG (عرض SVG) - Apache 2.0\nOkHttp (تستخدمها Coil) - Apache 2.0\nStart.io SDK (الإعلانات) - بشروط Start.io\nواجهة Iconify - مجموعات أيقونات بتراخيصها الخاصة</string>
+
+    <string name="menu_preferences">تفضيلاتي</string>
+    <string name="menu_storage">التخزين والبيانات</string>
+    <string name="prefs_intro">يمكن لزينوفو تذكّر طريقة استخدامك لوضع ما تستخدمه أكثر في المقدمة. لا شيء يُخفى أو يُقيَّد، ولا شيء من هذا يغادر هاتفك.</string>
+    <string name="prefs_learn">التعلّم من استخدامي</string>
+    <string name="prefs_learn_desc">يرتّب التصنيفات والألوان الأخيرة حسب مرات استخدامها.</string>
+    <string name="prefs_history">الاحتفاظ بسجل البحث</string>
+    <string name="prefs_history_desc">متوقف افتراضيًا. عند تشغيله تظهر آخر عمليات بحثك كاختصارات، وإيقافه يحذفها.</string>
+    <string name="prefs_learned_title">ما يتذكره زينوفو</string>
+    <string name="prefs_top_categories">أكثر التصنيفات استخدامًا</string>
+    <string name="prefs_recent_colors">أكثر الألوان استخدامًا</string>
+    <string name="prefs_nothing_yet">لا شيء بعد</string>
+    <string name="prefs_clear_learned">مسح التفضيلات المكتسبة</string>
+    <string name="prefs_history_title">سجل البحث</string>
+    <string name="prefs_clear_history">حذف سجل البحث</string>
+    <string name="storage_intro">يحتفظ زينوفو بما يحتاجه فقط. وصور الأيقونات المخزّنة مؤقتًا يمكن تنزيلها مجددًا دائمًا.</string>
+    <string name="storage_images">ذاكرة صور الأيقونات: %1$s</string>
+    <string name="storage_temp">ملفات التصدير والتحديث المؤقتة: %1$s</string>
+    <string name="storage_data">بياناتك (المفضلة والمجلدات والحزم والتعديلات ومشاريع المتجر والتفضيلات): %1$s</string>
+    <string name="storage_measuring">جارٍ القياس...</string>
+    <string name="storage_clear_cache">مسح الذاكرة المؤقتة</string>
+    <string name="storage_cache_cleared">تم مسح الذاكرة المؤقتة</string>
+    <string name="storage_danger">حذف بياناتي</string>
+    <string name="storage_delete_note">يزيل كل ما خزّنه زينوفو على هذا الهاتف. أما الملفات التي صدّرتها أو شاركتها في مكان آخر فلا تُمسّ.</string>
+    <string name="storage_delete_all">حذف كل البيانات المحلية</string>
+    <string name="storage_delete_title">حذف كل البيانات المحلية؟</string>
+    <string name="storage_delete_msg">سيُحذف نهائيًا: المفضلة والمجلدات والحزم والتعديلات المحفوظة ومشاريع المتجر وملفاتها المنزَّلة والتفضيلات واختيار اللغة. وسيعيد زينوفو التشغيل فارغًا. ولا يمكن التراجع.</string>
+    <string name="storage_delete_confirm">حذف كل شيء</string>
+    <string name="privacy_s1_title">ما يبقى على هاتفك</string>
+    <string name="privacy_s1_body">المفضلة والمجلدات والحزم والتعديلات المحفوظة ومشاريع GitHub المستوردة وملفاتها المنزَّلة وتفضيلاتك واختيار لغتك تُخزَّن في المساحة الخاصة بالتطبيق على هذا الهاتف. لا توجد حسابات ولا شيء يُزامَن مع خادم. وتُزال بـ«حذف كل البيانات المحلية» أو بإلغاء تثبيت التطبيق.</string>
+    <string name="privacy_s2_title">ما يُرسل وإلى من</string>
+    <string name="privacy_s2_body">كلمات البحث وطلبات الأيقونات تذهب إلى واجهة Iconify العامة (api.iconify.design). واستيراد مشروع أو تحديثه في «متجري» وفحص تحديثات التطبيق يتصلان بـ GitHub (api.github.com ومضيفات ملفاته) للمستودع الذي أدخلته. وكأي موقع، تستطيع هذه الخدمات رؤية عنوان IP والطلب. أما الصور التي تختارها في «من صورة إلى مجموعة أيقونات» فتُحلَّل على الهاتف ولا تُرفع أبدًا، ولا يُرسل إلى Iconify إلا كلمات التصنيفات.</string>
+    <string name="privacy_s3_title">الإعلانات</string>
+    <string name="privacy_s3_body">إذا كانت الإعلانات مفعّلة في نسختك فإن حزمة Start.io تعرض بانرًا وقد تستخدم معرّفات الجهاز مثل معرّف الإعلانات، وتعرض إشعار الموافقة الخاص بها. والإعلانات ليست شرطًا لاستخدام أي ميزة. نسخ التطوير تعرض إعلانات اختبار فقط، والنسخ التي بلا معرّف تطبيق Start.io لا تعرض إعلانات ولا تُشغّل الحزمة.</string>
+    <string name="privacy_s4_title">الأذونات</string>
+    <string name="privacy_s4_body">الإنترنت: للبحث والاستيراد وفحص التحديثات. تثبيت التطبيقات المجهولة: لا يُستخدم إلا عندما تضغط «تثبيت» على APK منزَّل، ويطلب أندرويد تأكيدك. زينوفو نفسه لا يطلب الموقع ولا جهات الاتصال ولا الكاميرا ولا الميكروفون؛ واختيار الصورة يتم عبر منتقي الصور في أندرويد. وقد تعلن مكتبات مثل حزمة الإعلانات أذونات خاصة بها يعرضها أندرويد في إعدادات التطبيق.</string>
+    <string name="privacy_s5_title">تحكمك</string>
+    <string name="privacy_s5_body">شاهد ما يتذكره زينوفو وعدّله وامسحه من «تفضيلاتي»، واحذف سجل البحث من هناك. وامسح الملفات المؤقتة أو احذف كل البيانات المحلية من «التخزين والبيانات».</string>
+    <string name="privacy_s6_title">عن هذا النص</string>
+    <string name="privacy_s6_body">هذه مسودة تصف ما يفعله التطبيق اليوم. وهي ليست استشارة قانونية ولا تدّعي الامتثال لأي قانون أو سياسة متجر. راجعها وحدّثها كلما تغيرت الميزات قبل نشر التطبيق.</string>
 </resources>

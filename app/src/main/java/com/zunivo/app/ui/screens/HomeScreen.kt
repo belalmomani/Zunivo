@@ -30,6 +30,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zunivo.app.R
 import com.zunivo.app.feature.search.SearchViewModel
 import com.zunivo.app.core.AppInfo
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.zunivo.app.domain.PrefsOps
+import com.zunivo.app.feature.prefs.PrefsViewModel
 import com.zunivo.app.feature.search.Category
 import com.zunivo.app.ui.components.ActionCard
 import com.zunivo.app.ui.components.EmptyState
@@ -40,7 +45,16 @@ import com.zunivo.app.ui.navigation.SubScreen
 import com.zunivo.app.ui.navigation.icon
 
 @Composable
-fun HomeScreen(onOpenSearch: () -> Unit, onOpen: (SubScreen) -> Unit, searchVm: SearchViewModel = viewModel()) {
+fun HomeScreen(
+    onOpenSearch: () -> Unit,
+    onOpen: (SubScreen) -> Unit,
+    searchVm: SearchViewModel = viewModel(),
+    prefsVm: PrefsViewModel = viewModel(),
+) {
+    val prefs by prefsVm.prefs.collectAsStateWithLifecycle()
+    val orderedCategories = remember(prefs.categoryUse) {
+        PrefsOps.orderCategories(prefs, Category.entries.map { it.name }).map { Category.valueOf(it) }
+    }
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -79,8 +93,8 @@ fun HomeScreen(onOpenSearch: () -> Unit, onOpen: (SubScreen) -> Unit, searchVm: 
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 SectionTitle(stringResource(R.string.home_categories))
                 LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    items(Category.entries) { category ->
-                        AssistChip(onClick = { searchVm.onCategory(category); onOpenSearch() }, label = { Text(stringResource(category.labelRes)) })
+                    items(orderedCategories) { category ->
+                        AssistChip(onClick = { prefsVm.recordCategory(category.name); searchVm.onCategory(category); onOpenSearch() }, label = { Text(stringResource(category.labelRes)) })
                     }
                 }
             }

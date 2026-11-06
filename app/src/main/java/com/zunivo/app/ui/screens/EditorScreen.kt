@@ -61,6 +61,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import com.zunivo.app.R
+import com.zunivo.app.domain.PrefsOps
+import com.zunivo.app.feature.prefs.PrefsViewModel
 import com.zunivo.app.domain.EditParams
 import com.zunivo.app.domain.HexColor
 import com.zunivo.app.domain.IconRef
@@ -88,12 +90,19 @@ private enum class PreviewContext(val labelRes: Int) {
 }
 
 @Composable
-fun EditorScreen(onBack: () -> Unit, onGoSearch: () -> Unit, vm: EditorViewModel = viewModel()) {
+fun EditorScreen(
+    onBack: () -> Unit,
+    onGoSearch: () -> Unit,
+    vm: EditorViewModel = viewModel(),
+    prefsVm: PrefsViewModel = viewModel(),
+) {
+    val prefs by prefsVm.prefs.collectAsStateWithLifecycle()
     val state by vm.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
     val message = state.message
     LaunchedEffect(message) {
+        if (message == EditorMessage.SAVED) prefsVm.recordColor(state.session?.params?.colorHex)
         if (message != null) {
             Toast.makeText(context, context.getString(messageRes(message)), Toast.LENGTH_SHORT).show()
             vm.consumeMessage()
@@ -102,6 +111,7 @@ fun EditorScreen(onBack: () -> Unit, onGoSearch: () -> Unit, vm: EditorViewModel
     val share = state.share
     LaunchedEffect(share) {
         if (share != null) {
+            prefsVm.recordColor(state.session?.params?.colorHex)
             launchShare(context, share)
             vm.consumeShare()
         }
@@ -149,12 +159,12 @@ fun EditorScreen(onBack: () -> Unit, onGoSearch: () -> Unit, vm: EditorViewModel
         }
     } else {
         BackHandler { vm.close() }
-        Workspace(session, state.busy, vm)
+        Workspace(session, state.busy, vm, PrefsOps.topColors(prefs))
     }
 }
 
 @Composable
-private fun Workspace(session: EditSession, busy: Boolean, vm: EditorViewModel) {
+private fun Workspace(session: EditSession, busy: Boolean, vm: EditorViewModel, recentColors: List<String>) {
     val params = session.params
     var previewIndex by rememberSaveable { mutableStateOf(0) }
     var compare by rememberSaveable { mutableStateOf(false) }
@@ -189,6 +199,7 @@ private fun Workspace(session: EditSession, busy: Boolean, vm: EditorViewModel) 
                 selected = params.colorHex,
                 noneLabel = stringResource(R.string.editor_color_original),
                 onSelect = { hex -> vm.update { it.copy(colorHex = hex) } },
+                recent = recentColors,
             )
             ColorPicker(
                 title = stringResource(R.string.editor_background),
@@ -263,7 +274,13 @@ private fun Workspace(session: EditSession, busy: Boolean, vm: EditorViewModel) 
 }
 
 @Composable
-internal fun ColorPicker(title: String, selected: String?, noneLabel: String, onSelect: (String?) -> Unit) {
+internal fun ColorPicker(
+    title: String,
+    selected: String?,
+    noneLabel: String,
+    onSelect: (String?) -> Unit,
+    recent: List<String> = emptyList(),
+) {
     var custom by rememberSaveable(selected) { mutableStateOf(selected.orEmpty()) }
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         SectionTitle(title)
@@ -271,7 +288,7 @@ internal fun ColorPicker(title: String, selected: String?, noneLabel: String, on
             item {
                 FilterChip(selected = selected == null, onClick = { onSelect(null) }, label = { Text(noneLabel) })
             }
-            items(SWATCHES) { hex -> ColorSwatch(hex, selected == hex, onClick = { onSelect(hex) }) }
+            items((recent + SWATCHES).distinct()) { hex -> ColorSwatch(hex, selected == hex, onClick = { onSelect(hex) }) }
         }
         OutlinedTextField(
             value = custom,

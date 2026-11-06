@@ -53,7 +53,6 @@
 
     <string name="privacy_title">Privacy</string>
     <string name="privacy_draft">Draft - updated as features are added</string>
-    <string name="privacy_body">Zunivo itself collects no personal data and has no accounts. When you search, your search words are sent to the public Iconify API (api.iconify.design), and icon images are loaded from it; Iconify may log requests under its own policy. Images you choose in Image to icon set are analyzed on the phone and are never uploaded. Exported files are created on the phone and shared only where you choose. Import in My store contacts only GitHub, and downloads happen only when you ask. If ads are active in your build, the Start.io SDK shows a banner, may use device identifiers and shows its own consent notice; ads are never required to use a feature. Update checks contact GitHub Releases.</string>
 
     <string name="help_title">Help</string>
     <string name="help_body">Type a keyword in Search or pick a category to find icons. Tap an icon to see its set, author and license. Change the language from Settings. Features marked as a later phase will be enabled as the app grows.</string>
@@ -370,4 +369,44 @@
     <string name="licenses_icons_note">Icons come from Iconify. Each icon set has its own license; Zunivo shows the license and author of every icon you open and keeps them in exports.</string>
     <string name="licenses_libraries">Open-source libraries</string>
     <string name="licenses_list">Jetpack Compose and AndroidX - Apache 2.0\nCoil (image loading) - Apache 2.0\nAndroidSVG (SVG rendering) - Apache 2.0\nOkHttp (used by Coil) - Apache 2.0\nStart.io SDK (ads) - provided under Start.io terms\nIconify API - icon sets under their own licenses</string>
+
+    <string name="menu_preferences">My preferences</string>
+    <string name="menu_storage">Storage and data</string>
+    <string name="prefs_intro">Zunivo can remember how you use it to put the things you use most first. Nothing is hidden or restricted, and none of this leaves your phone.</string>
+    <string name="prefs_learn">Learn from my usage</string>
+    <string name="prefs_learn_desc">Orders categories and recent colors by how often you use them.</string>
+    <string name="prefs_history">Keep my search history</string>
+    <string name="prefs_history_desc">Off by default. When on, your last searches appear as shortcuts. Turning it off deletes them.</string>
+    <string name="prefs_learned_title">What Zunivo remembers</string>
+    <string name="prefs_top_categories">Most used categories</string>
+    <string name="prefs_recent_colors">Most used colors</string>
+    <string name="prefs_nothing_yet">Nothing yet</string>
+    <string name="prefs_clear_learned">Clear learned preferences</string>
+    <string name="prefs_history_title">Search history</string>
+    <string name="prefs_clear_history">Delete search history</string>
+    <string name="storage_intro">Zunivo keeps only what it needs. Cached icon images can always be downloaded again.</string>
+    <string name="storage_images">Icon image cache: %1$s</string>
+    <string name="storage_temp">Temporary export and update files: %1$s</string>
+    <string name="storage_data">Your data (favorites, folders, packs, edits, store projects, preferences): %1$s</string>
+    <string name="storage_measuring">measuring...</string>
+    <string name="storage_clear_cache">Clear cache</string>
+    <string name="storage_cache_cleared">Cache cleared</string>
+    <string name="storage_danger">Delete my data</string>
+    <string name="storage_delete_note">Removes everything Zunivo stored on this phone. Files you exported or shared elsewhere are not touched.</string>
+    <string name="storage_delete_all">Delete all local data</string>
+    <string name="storage_delete_title">Delete all local data?</string>
+    <string name="storage_delete_msg">This permanently deletes your favorites, folders, packs, saved edits, store projects and their downloaded files, preferences and language choice. Zunivo will restart empty. It cannot be undone.</string>
+    <string name="storage_delete_confirm">Delete everything</string>
+    <string name="privacy_s1_title">What stays on your phone</string>
+    <string name="privacy_s1_body">Favorites, folders, packs, saved edits, imported GitHub projects with their downloaded files, your preferences and your language choice are stored in the app\'s private storage on this phone. There are no accounts and nothing is synced to a server. It is removed by Delete all local data or by uninstalling.</string>
+    <string name="privacy_s2_title">What is sent, and to whom</string>
+    <string name="privacy_s2_body">Search words and icon requests go to the public Iconify API (api.iconify.design). Importing or updating a project in My store, and checking for app updates, contact GitHub (api.github.com and GitHub file hosts) for the repository you entered. Like any website, these services can see your IP address and the request. Images you pick for Image to icon set are analyzed on the phone and are never uploaded; only category keywords are sent to Iconify.</string>
+    <string name="privacy_s3_title">Ads</string>
+    <string name="privacy_s3_body">If ads are active in your build, the Start.io SDK shows a banner, may use device identifiers such as the advertising ID, and shows its own consent notice. Ads are never required to use a feature. Development builds show test ads only; builds without a Start.io App ID show no ads and do not start the SDK.</string>
+    <string name="privacy_s4_title">Permissions</string>
+    <string name="privacy_s4_body">Internet: search, import and update checks. Install unknown apps: only used when you tap Install on a downloaded APK, and Android asks you to confirm. Zunivo itself does not ask for location, contacts, camera or microphone; picking an image uses Android\'s photo picker. Libraries such as the ads SDK may declare their own permissions, which Android lists in the app settings.</string>
+    <string name="privacy_s5_title">Your control</string>
+    <string name="privacy_s5_body">See, change and clear what Zunivo remembers in My preferences. Delete the search history there. Clear cached files or delete all local data in Storage and data.</string>
+    <string name="privacy_s6_title">About this text</string>
+    <string name="privacy_s6_body">This is a draft that describes what the app does today. It is not legal advice and does not claim compliance with any law or store policy. Review it, and update it when features change, before publishing the app.</string>
 </resources>

@@ -40,6 +40,8 @@ import com.zunivo.app.feature.search.SearchViewModel
 import com.zunivo.app.ui.components.AdBanner
 import com.zunivo.app.ui.screens.CollectionsScreen
 import com.zunivo.app.ui.screens.LicensesScreen
+import com.zunivo.app.ui.screens.PreferencesScreen
+import com.zunivo.app.ui.screens.StorageScreen
 import com.zunivo.app.ui.screens.UpdateScreen
 import com.zunivo.app.ui.screens.StoreScreen
 import com.zunivo.app.ui.screens.DesignersScreen
@@ -163,6 +165,8 @@ private fun MainShell(currentLanguage: AppLanguage, onLanguageChange: (AppLangua
                     SubScreen.STORE -> StoreScreen(goBack)
                     SubScreen.UPDATE -> UpdateScreen(goBack)
                     SubScreen.LICENSES -> LicensesScreen(goBack)
+                    SubScreen.PREFERENCES -> PreferencesScreen(goBack)
+                    SubScreen.STORAGE -> StorageScreen(goBack)
                     SubScreen.ABOUT -> AboutScreen(goBack)
                     SubScreen.PRIVACY -> PrivacyScreen(goBack)
                     SubScreen.HELP -> HelpScreen(goBack)

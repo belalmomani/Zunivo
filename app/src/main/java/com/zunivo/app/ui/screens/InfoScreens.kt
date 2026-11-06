@@ -50,8 +50,24 @@ fun AboutScreen(onBack: () -> Unit) {
 
 @Composable
 fun PrivacyScreen(onBack: () -> Unit) {
-    TextPage(stringResource(R.string.privacy_title), stringResource(R.string.privacy_draft),
-        stringResource(R.string.privacy_body), onBack)
+    val sections = listOf(
+        R.string.privacy_s1_title to R.string.privacy_s1_body,
+        R.string.privacy_s2_title to R.string.privacy_s2_body,
+        R.string.privacy_s3_title to R.string.privacy_s3_body,
+        R.string.privacy_s4_title to R.string.privacy_s4_body,
+        R.string.privacy_s5_title to R.string.privacy_s5_body,
+        R.string.privacy_s6_title to R.string.privacy_s6_body,
+    )
+    Column(Modifier.verticalScroll(rememberScrollState())) {
+        ScreenHeader(stringResource(R.string.privacy_title), onBack)
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text(stringResource(R.string.privacy_draft), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.tertiary)
+            sections.forEach { (title, body) ->
+                Text(stringResource(title), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(body), style = MaterialTheme.typography.bodyMedium)
+            }
+        }
+    }
 }
 
 @Composable
