@@ -7,5 +7,5 @@ BUILD_TIME: NOT BUILT YET
 BUILD_STATUS: NOT BUILT YET
 SIGNING: NOT CONFIGURED
 GITHUB_REPO: https://github.com/belalmomani/Zunivo
-KEY_CHANGES: Phase 8 - local preferences (opt-in history), storage/cache screen, delete-all-data, sectioned privacy text, CI permission listing (not yet built)
+KEY_CHANGES: Phase 9 - full README, FEATURES, TEST_REPORT, QA_CHECKLIST, CHANGELOG; static audit; code not yet built
 USER_ACTIONS_REQUIRED: release keystore + 4 secrets (see docs/RELEASING.md); Start.io production App ID (secret STARTIO_APP_ID); Supabase URL + anon key

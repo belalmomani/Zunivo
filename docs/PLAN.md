@@ -19,3 +19,6 @@ A phase is not "done" until its acceptance criteria pass. Anything unverified is
 - Production signing keystore (env vars `ZUNIVO_KEYSTORE_PATH/PASSWORD`, `ZUNIVO_KEY_ALIAS`, `ZUNIVO_KEY_PASSWORD`)
 - Start.io production app id
 - Supabase project URL + anon key
+
+## Status after phase 9
+All phases are written. Acceptance ("builds, tests pass, QA done") is **not** reached yet: see `docs/TEST_REPORT.md` and `docs/QA_CHECKLIST.md`.
