@@ -36,6 +36,8 @@ import com.zunivo.app.ui.components.SectionTitle
 fun PreferencesScreen(onBack: () -> Unit, prefsVm: PrefsViewModel = viewModel()) {
     val prefs by prefsVm.prefs.collectAsStateWithLifecycle()
     val topCategories = PrefsOps.topCategories(prefs).mapNotNull { name -> Category.entries.firstOrNull { it.name == name } }
+    // stringResource is @Composable, so resolve the labels here (map is inline) and not inside joinToString.
+    val topCategoryLabels = topCategories.map { stringResource(it.labelRes) }
     val colors = PrefsOps.topColors(prefs)
 
     Column(Modifier.verticalScroll(rememberScrollState())) {
@@ -49,7 +51,7 @@ fun PreferencesScreen(onBack: () -> Unit, prefsVm: PrefsViewModel = viewModel())
             Text(stringResource(R.string.prefs_top_categories), style = MaterialTheme.typography.labelLarge)
             Text(
                 if (topCategories.isEmpty()) stringResource(R.string.prefs_nothing_yet)
-                else topCategories.joinToString(", ") { stringResource(it.labelRes) },
+                else topCategoryLabels.joinToString(", "),
                 style = MaterialTheme.typography.bodyMedium,
             )
             Text(stringResource(R.string.prefs_recent_colors), style = MaterialTheme.typography.labelLarge)
