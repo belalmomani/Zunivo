@@ -41,6 +41,8 @@ jobs:
           ZUNIVO_KEY_ALIAS: ${{ secrets.ZUNIVO_KEY_ALIAS }}
           ZUNIVO_KEY_PASSWORD: ${{ secrets.ZUNIVO_KEY_PASSWORD }}
           STARTIO_APP_ID: ${{ secrets.STARTIO_APP_ID }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: gradle :app:assembleRelease --stacktrace
       - name: Collect files
         run: |

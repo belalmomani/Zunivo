@@ -67,3 +67,13 @@ create policy "owner sees own work downloads" on public.download_events for sele
 
 -- reports: any signed-in user may file one; nobody can read them through the app API.
 create policy "file a report" on public.copyright_reports for insert with check (reporter_id = auth.uid());
+
+-- Real download counts for the app (counts only; the view runs with the owner's rights, so it can count rows RLS hides).
+-- Only PUBLIC works are counted. No user ids are exposed.
+create view public.work_download_counts as
+  select e.work_id, count(*)::int as downloads
+  from public.download_events e
+  join public.designer_works w on w.id = e.work_id
+  where w.visibility = 'public'
+  group by e.work_id;
+grant select on public.work_download_counts to anon, authenticated;

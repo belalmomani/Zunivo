@@ -15,15 +15,15 @@ Legend: **Implemented** = code written; **not yet built/run** applies to everyth
 | 9 | Update from GitHub Releases with checksum + package + version + signature checks; release workflow | Implemented |
 | 10 | Preferences (learning, opt-in history), storage/cache, delete all data, privacy screen + draft policy | Implemented |
 | 11 | Arabic/English, RTL/LTR, saved language | Implemented |
-| 12 | Unit tests (87 declared) | Written, not run by the author |
+| 12 | Designer pages: browse, work detail (licenses re-fetched from Iconify), email-code sign-in, profile, publish a pack (license-filtered, private first), visibility switch with confirmation, real download counts, copyright report, delete my page | Implemented; needs a Supabase project (`docs/supabase/README.md`); never run |
+| 13 | Unit tests (91 declared) | Written, not run by the author |
 
 ## Not implemented
-- **Designer pages** (profiles, published works, real download counts): needs a Supabase project. Schema + RLS are in `docs/supabase/schema.sql`; the screen says "not connected".
-- In-app **copyright report / review** flow (only the `copyright_reports` table exists in the schema).
+- Reviewing copyright reports inside the app (you review them in the Supabase dashboard); deleting the sign-in account itself (dashboard).
 - Public publishing of store projects; private GitHub repositories (needs OAuth, never a token in code).
 - Accounts, login/logout, cloud sync (nothing needs them yet).
 - Rewarded ads; custom Start.io consent API call (Start.io's own consent notice is used).
-- Instrumented/UI tests; pixel-exact logo and custom fonts.
+- Network-dependent UI tests (search results, exports, GitHub import); pixel-exact logo and custom fonts. Offline UI smoke tests exist (`docs/TEST_REPORT.md`).
 
 ## What the user must do
 Signing key + secrets; Start.io production App ID; Supabase project (optional); fill in `docs/PRIVACY_POLICY.md`; Play Data-safety forms if publishing on Google Play.

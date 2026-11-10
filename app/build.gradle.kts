@@ -11,6 +11,11 @@ val keystorePath: String? = System.getenv("ZUNIVO_KEYSTORE_PATH")
 // Without it, release builds contain NO active ads. Debug builds use Start.io's public demo ID with test ads.
 val startioAppId: String? =
     (providers.gradleProperty("STARTIO_APP_ID").orNull ?: System.getenv("STARTIO_APP_ID"))?.trim()?.takeIf { it.isNotEmpty() }
+// Supabase (designer pages): only the project URL and the PUBLIC anon key. Never put service_role anywhere in the app.
+fun publicConfig(name: String, allowed: String): String =
+    (providers.gradleProperty(name).orNull ?: System.getenv(name))?.trim().orEmpty().filter { it.isLetterOrDigit() || it in allowed }
+val supabaseUrl: String = publicConfig("SUPABASE_URL", ":/._-")
+val supabaseAnonKey: String = publicConfig("SUPABASE_ANON_KEY", "._-")
 // Builds for Google Play must not self-update from APKs: pass -PPLAY_BUILD=true.
 val playBuild: Boolean = providers.gradleProperty("PLAY_BUILD").orNull == "true"
 
@@ -24,7 +29,10 @@ android {
         targetSdk = 36
         versionCode = 1          // +1 for every production release
         versionName = "0.1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("boolean", "SELF_UPDATE_ENABLED", (!playBuild).toString())
+        buildConfigField("String", "SUPABASE_URL", "\"" + supabaseUrl + "\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"" + supabaseAnonKey + "\"")
     }
 
     signingConfigs {
@@ -40,20 +48,17 @@ android {
 
     buildTypes {
         debug {
-            manifestPlaceholders["startioMetaName"] = "com.startapp.sdk.APPLICATION_ID"
-            manifestPlaceholders["startioAppId"] = "205489527"   // public Start.io demo ID, test ads only
+            buildConfigField("String", "STARTIO_APP_ID", "\"205489527\"")   // public Start.io demo ID, test ads only
             buildConfigField("boolean", "ADS_ENABLED", "true")
             buildConfigField("boolean", "ADS_TEST", "true")
         }
         release {
             if (startioAppId != null) {
-                manifestPlaceholders["startioMetaName"] = "com.startapp.sdk.APPLICATION_ID"
-                manifestPlaceholders["startioAppId"] = startioAppId
+                buildConfigField("String", "STARTIO_APP_ID", "\"" + startioAppId + "\"")
                 buildConfigField("boolean", "ADS_ENABLED", "true")
             } else {
-                // The SDK finds no App ID, so it never starts. The app works normally, without ads.
-                manifestPlaceholders["startioMetaName"] = "zunivo.ads.disabled"
-                manifestPlaceholders["startioAppId"] = "none"
+                // No App ID: the SDK is never initialised and no ad code runs. The app works normally, without ads.
+                buildConfigField("String", "STARTIO_APP_ID", "\"\"")
                 buildConfigField("boolean", "ADS_ENABLED", "false")
             }
             buildConfigField("boolean", "ADS_TEST", "false")
@@ -92,6 +97,12 @@ dependencies {
     implementation(libs.startapp.inapp)
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     testImplementation(libs.junit)
     testImplementation(libs.org.json)

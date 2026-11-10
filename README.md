@@ -42,14 +42,14 @@ Versions are pinned in `gradle/libs.versions.toml` (AGP 9.2.1, Kotlin 2.3.21, Co
 - **Iconify:** no key needed (public API `https://api.iconify.design`; docs: github.com/iconify/website/docs/api).
 - **Start.io:** debug builds use Start.io's public demo App ID with test ads. For production pass your App ID:
   `STARTIO_APP_ID=xxxx gradle :app:assembleRelease` (or `-PSTARTIO_APP_ID=xxxx`; in CI add the repository secret `STARTIO_APP_ID`).
-  **Without it, release builds contain no active ads** and the SDK never starts. Where it goes: `app/build.gradle.kts` (manifest placeholder `startioAppId`).
+  **Without it, release builds contain no active ads** and the SDK never starts. Where it goes: `app/build.gradle.kts` (BuildConfig field `STARTIO_APP_ID`).
 - **GitHub Releases / updates:** tag `vX.Y.Z` matching `versionName`; the *Release* workflow publishes the signed APK and its `.sha256`. See `docs/RELEASING.md`.
 - **Signing:** keystore and passwords only via env vars / CI secrets: `ZUNIVO_KEYSTORE_PATH`, `ZUNIVO_KEYSTORE_PASSWORD`, `ZUNIVO_KEY_ALIAS`, `ZUNIVO_KEY_PASSWORD`.
   Create the key once, keep it forever, never commit it. Raise `versionCode` by 1 for every release.
 - **Supabase (designer pages, optional, not connected yet):** run `docs/supabase/schema.sql` (tables + Row Level Security). Only the public anon key may ever be used in the app, never `service_role`.
 
 ## Known limits
-- Designer pages, public publishing, accounts/cloud sync, in-app copyright-report UI and rewarded ads are **not implemented** (see `docs/FEATURES.md`).
+- Public publishing outside designer pages, private GitHub repositories, cloud sync and rewarded ads are **not implemented**; designer pages are written but need a Supabase project and have never run (see `docs/FEATURES.md`).
 - The "Z" logo and app icon are drawn from the approved mockup but not pixel-matched; fonts are the system fonts.
 - Style filters (outline/filled) and categories are approximate by design and say so in the UI.
 - Offline: saved data works; icon images appear offline only if still in the image cache; search and export need internet.

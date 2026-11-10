@@ -28,6 +28,18 @@ object IconifyParser {
         return SearchPage(icons, root.optInt("total", icons.size), root.optInt("limit", 0), sets)
     }
 
+    /** `/collections?prefixes=` response: an object keyed by prefix, each value an IconifyInfo. */
+    fun parseCollections(json: String): Map<String, IconSetInfo> {
+        val root = JSONObject(json)
+        val out = HashMap<String, IconSetInfo>()
+        val keys = root.keys()
+        while (keys.hasNext()) {
+            val prefix = keys.next()
+            root.optJSONObject(prefix)?.let { out[prefix] = parseSet(prefix, it) }
+        }
+        return out
+    }
+
     private fun parseSet(prefix: String, obj: JSONObject): IconSetInfo {
         val author = obj.optJSONObject("author")
         val license = obj.optJSONObject("license")

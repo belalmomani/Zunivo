@@ -29,6 +29,10 @@ coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version
 junit = { module = "junit:junit", version.ref = "junit" }
 androidsvg = { module = "com.caverock:androidsvg-aar", version.ref = "androidSvg" }
 startapp-inapp = { module = "com.startapp:inapp-sdk", version.ref = "startapp" }
+androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+androidx-test-ext-junit = { module = "androidx.test.ext:junit", version = "1.2.1" }
+androidx-test-runner = { module = "androidx.test:runner", version = "1.6.2" }
 org-json = { module = "org.json:json", version.ref = "orgJson" }
 
 [plugins]

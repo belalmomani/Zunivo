@@ -31,6 +31,18 @@ class IconifyApi(private val baseUrl: String = IconifyEndpoints.BASE_URL) {
         }
     }
 
+    /** Author/license info for the given set prefixes (each prefix must be a safe Iconify identifier). */
+    suspend fun collections(prefixes: List<String>): Map<String, com.zunivo.app.domain.IconSetInfo> = withContext(Dispatchers.IO) {
+        val safe = prefixes.distinct().filter { it.matches(Regex("[A-Za-z0-9][A-Za-z0-9_-]*")) }.take(40)
+        if (safe.isEmpty()) return@withContext emptyMap()
+        val text = get("$baseUrl/collections?prefixes=" + URLEncoder.encode(safe.joinToString(","), "UTF-8"), "application/json", MAX_JSON_BYTES)
+        try {
+            IconifyParser.parseCollections(text)
+        } catch (e: JSONException) {
+            throw ApiException.BadData()
+        }
+    }
+
     /** Downloads one icon as SVG text. Only URLs under the Iconify base URL are accepted. */
     suspend fun fetchSvg(url: String): String = withContext(Dispatchers.IO) {
         if (!url.startsWith("$baseUrl/")) throw ApiException.BadData()

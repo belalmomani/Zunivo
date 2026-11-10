@@ -14,9 +14,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zunivo">
-        <!-- Start.io: App ID comes from build config (demo ID in debug, none in release unless you provide one). -->
-        <meta-data android:name="${startioMetaName}" android:value="${startioAppId}" />
-        <meta-data android:name="com.startapp.sdk.RETURN_ADS_ENABLED" android:value="false" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.zunivo.app.fileprovider"
