@@ -469,4 +469,16 @@
     <string name="dm_added_to_packs">Added to your packs</string>
     <string name="dm_reported">Report sent. Thank you.</string>
     <string name="dm_nothing_to_publish">None of these icons can be published because of their licenses.</string>
+
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_start">Start</string>
+    <string name="onboarding_1_title">Find the right icon</string>
+    <string name="onboarding_1_body">Search thousands of icons by keyword or category. Every icon shows its author and license.</string>
+    <string name="onboarding_2_title">Make it yours</string>
+    <string name="onboarding_2_body">Change the color, size and padding, preview it on a button or a phone screen, and save your edit. The original is never changed.</string>
+    <string name="onboarding_3_title">Organize and export</string>
+    <string name="onboarding_3_body">Keep favorites, build folders and packs, and export SVG, PNG or a ZIP that keeps the license information.</string>
+    <string name="home_try_title">Try searching for</string>
+    <string name="home_try_terms">home,user,heart,settings,camera,cart</string>
 </resources>

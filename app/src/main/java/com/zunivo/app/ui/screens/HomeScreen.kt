@@ -80,6 +80,17 @@ fun HomeScreen(
             ActionCard(SubScreen.STUDIO.icon(), stringResource(R.string.menu_studio), { onOpen(SubScreen.STUDIO) })
         }
         item {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                SectionTitle(stringResource(R.string.home_try_title))
+                val terms = stringResource(R.string.home_try_terms).split(',').map { it.trim() }.filter { it.isNotEmpty() }
+                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    items(terms) { term ->
+                        AssistChip(onClick = { searchVm.onQueryChange(term); onOpenSearch() }, label = { Text(term) })
+                    }
+                }
+            }
+        }
+        item {
             Column {
                 SectionTitle(stringResource(R.string.home_recent))
                 EmptyState(

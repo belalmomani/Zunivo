@@ -15,6 +15,7 @@ Legend: **Implemented** = code written; **not yet built/run** applies to everyth
 | 9 | Update from GitHub Releases with checksum + package + version + signature checks; release workflow | Implemented |
 | 10 | Preferences (learning, opt-in history), storage/cache, delete all data, privacy screen + draft policy | Implemented |
 | 11 | Arabic/English, RTL/LTR, saved language | Implemented |
+| 11b | First-run welcome tour (3 steps, skippable, shown once) and search suggestions on Home | Implemented |
 | 12 | Designer pages: browse, work detail (licenses re-fetched from Iconify), email-code sign-in, profile, publish a pack (license-filtered, private first), visibility switch with confirmation, real download counts, copyright report, delete my page | Implemented; needs a Supabase project (`docs/supabase/README.md`); never run |
 | 13 | Unit tests (91 declared) | Written, not run by the author |
 

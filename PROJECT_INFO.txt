@@ -7,5 +7,5 @@ BUILD_TIME: NOT BUILT YET
 BUILD_STATUS: NOT BUILT YET
 SIGNING: NOT CONFIGURED
 GITHUB_REPO: https://github.com/belalmomani/Zunivo
-KEY_CHANGES: Designer pages; emulator UI smoke tests (manual workflow); code not yet built
+KEY_CHANGES: Welcome tour + Home search suggestions; designer pages; UI smoke tests (code not yet built)
 USER_ACTIONS_REQUIRED: release keystore + 4 secrets (docs/RELEASING.md); Start.io App ID (STARTIO_APP_ID); Supabase project: run schema.sql, set SUPABASE_URL + SUPABASE_ANON_KEY (docs/supabase/README.md)

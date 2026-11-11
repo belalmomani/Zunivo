@@ -39,7 +39,7 @@ APK install/verify (`ApkVerifier`), file downloads, clear-all-data. These need a
 If one of these fails to compile, it will be the first CI error.
 
 ## UI smoke tests (instrumented, on an emulator)
-`app/src/androidTest/.../SmokeTest.kt` (9 tests, offline): bottom navigation after the splash, search tab, empty favorites, editor guidance,
+`app/src/androidTest/.../SmokeTest.kt` (9 tests, offline) and `OnboardingTest.kt` (1 test: the welcome tour): bottom navigation after the splash, search tab, empty favorites, editor guidance,
 store rejecting an invalid link, privacy screen, settings -> storage, designers "not connected" state, and switching to Arabic (then restoring the system language).
 Run: GitHub > Actions > **UI tests (emulator)** > Run workflow (or locally `gradle :app:connectedDebugAndroidTest` with an emulator).
 Ads never start during these tests (`AdsConfig` detects the test library). Result: _(not run yet)_.

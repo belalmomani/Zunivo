@@ -469,4 +469,16 @@
     <string name="dm_added_to_packs">أُضيفت إلى حزمك</string>
     <string name="dm_reported">أُرسل البلاغ. شكرًا لك.</string>
     <string name="dm_nothing_to_publish">لا يمكن نشر أي من هذه الأيقونات بسبب تراخيصها.</string>
+
+    <string name="onboarding_skip">تخطي</string>
+    <string name="onboarding_next">التالي</string>
+    <string name="onboarding_start">ابدأ</string>
+    <string name="onboarding_1_title">اعثر على الأيقونة المناسبة</string>
+    <string name="onboarding_1_body">ابحث بين آلاف الأيقونات بالكلمة أو بالتصنيف. وكل أيقونة تعرض مؤلفها وترخيصها.</string>
+    <string name="onboarding_2_title">اجعلها على ذوقك</string>
+    <string name="onboarding_2_body">غيّر اللون والحجم والهوامش، وعاينها داخل زر أو شاشة هاتف، واحفظ تعديلك. الأيقونة الأصلية لا تتغير أبدًا.</string>
+    <string name="onboarding_3_title">نظّم وصدّر</string>
+    <string name="onboarding_3_body">احتفظ بمفضلتك، وأنشئ مجلدات وحزمًا، وصدّر SVG أو PNG أو ملف ZIP يحفظ معلومات الترخيص.</string>
+    <string name="home_try_title">جرّب البحث عن</string>
+    <string name="home_try_terms">بيت,مستخدم,قلب,إعدادات,كاميرا,سلة</string>
 </resources>

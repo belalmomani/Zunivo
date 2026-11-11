@@ -18,8 +18,11 @@ import androidx.compose.ui.test.performTextInput
 import androidx.test.platform.app.InstrumentationRegistry
 import com.zunivo.app.i18n.AppLanguage
 import com.zunivo.app.i18n.LocaleManager
+import com.zunivo.app.core.FirstRun
 import org.junit.FixMethodOrder
 import org.junit.Rule
+import org.junit.rules.ExternalResource
+import org.junit.rules.RuleChain
 import org.junit.Test
 import org.junit.runners.MethodSorters
 import java.util.Locale
@@ -31,8 +34,16 @@ import java.util.Locale
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class SmokeTest {
+    private val composeRule = createAndroidComposeRule<MainActivity>()
+    private val rule get() = composeRule
+
+    /** The welcome tour is marked as seen before the activity starts, so every test begins at the app itself. */
     @get:Rule
-    val rule = createAndroidComposeRule<MainActivity>()
+    val chain: RuleChain = RuleChain
+        .outerRule(object : ExternalResource() {
+            override fun before() { FirstRun.markDone(InstrumentationRegistry.getInstrumentation().targetContext) }
+        })
+        .around(composeRule)
 
     private val ctx: Context get() = InstrumentationRegistry.getInstrumentation().targetContext
     private fun s(id: Int): String = ctx.getString(id)

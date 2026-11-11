@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import com.zunivo.app.R
+import com.zunivo.app.core.FirstRun
 import com.zunivo.app.i18n.AppLanguage
 import com.zunivo.app.ui.navigation.NavState
 import com.zunivo.app.ui.navigation.SubScreen
@@ -55,6 +56,7 @@ import com.zunivo.app.ui.screens.FavoritesScreen
 import com.zunivo.app.ui.screens.HelpScreen
 import com.zunivo.app.ui.screens.HomeScreen
 import com.zunivo.app.ui.screens.MoreScreen
+import com.zunivo.app.ui.screens.OnboardingScreen
 import com.zunivo.app.ui.screens.PrivacyScreen
 import com.zunivo.app.ui.screens.SearchScreen
 import com.zunivo.app.ui.screens.SettingsScreen
@@ -81,11 +83,16 @@ private val tabs = listOf(
 
 @Composable
 fun ZunivoRoot(currentLanguage: AppLanguage, onLanguageChange: (AppLanguage) -> Unit) {
+    val context = LocalContext.current
     var showSplash by rememberSaveable { mutableStateOf(true) }
-    if (showSplash) {
-        SplashScreen(onFinished = { showSplash = false })
-    } else {
-        MainShell(currentLanguage, onLanguageChange)
+    var showOnboarding by rememberSaveable { mutableStateOf(!FirstRun.isDone(context)) }
+    when {
+        showSplash -> SplashScreen(onFinished = { showSplash = false })
+        showOnboarding -> OnboardingScreen(onDone = {
+            FirstRun.markDone(context)
+            showOnboarding = false
+        })
+        else -> MainShell(currentLanguage, onLanguageChange)
     }
 }
 

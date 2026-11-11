@@ -3,6 +3,8 @@
 Tick each item only after doing it. Note the result in `docs/TEST_REPORT.md`.
 
 ## Launch and navigation
+- [ ] Fresh install: splash, then the 3-step welcome tour (Skip works at any time); it does not appear on the next launch
+- [ ] Home: tapping a suggested search (e.g. home / بيت) opens Search with results
 - [ ] App starts, splash then Home; bottom bar Home/Search/Favorites/More; back button behaves
 - [ ] Rotate the phone on Search, Editor and Store: state is kept
 ## Language
