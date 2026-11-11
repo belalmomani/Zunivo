@@ -41,7 +41,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.zunivo.app.domain.PrefsOps
 import com.zunivo.app.feature.prefs.PrefsViewModel
 import com.zunivo.app.R

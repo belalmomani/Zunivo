@@ -33,8 +33,8 @@ APK install/verify (`ApkVerifier`), file downloads, clear-all-data. These need a
 | API used | Checked against |
 |---|---|
 | Start.io: `StartAppSDK.initParams(..).setReturnAdsEnabled(false).init()`, `setTestAdsEnabled(true)`, `Banner` in Compose, demo App ID | Start.io's official demo repository (StartApp-SDK/android-sdk-demo) - matches |
-| Coil 3: `SingletonImageLoader.get(context)`, `diskCache?.clear()`, `memoryCache?.clear()`, `AsyncImage` | Coil docs and examples - matches; `diskCache.size` not confirmed |
-| AndroidSVG: `SVG.getFromString`, `renderToCanvas(Canvas)` | library README from memory - **unconfirmed** |
+| Coil 3: `SingletonImageLoader.get(context)`, `diskCache?.clear()`, `diskCache.size`, `memoryCache?.clear()`, `AsyncImage` | Coil 3 API reference and examples - matches |
+| AndroidSVG: `SVG.getFromString`, `renderToCanvas(Canvas)`, artifact `com.caverock:androidsvg-aar:1.4` | AndroidSVG javadoc and project page (1.4 is the current release) - matches |
 | GitHub / Iconify JSON shapes | official docs; fixtures hand-written |
 If one of these fails to compile, it will be the first CI error.
 
@@ -44,3 +44,6 @@ store rejecting an invalid link, privacy screen, settings -> storage, designers 
 Run: GitHub > Actions > **UI tests (emulator)** > Run workflow (or locally `gradle :app:connectedDebugAndroidTest` with an emulator).
 Ads never start during these tests (`AdsConfig` detects the test library). Result: _(not run yet)_.
 They check that screens open and key texts show; they do **not** cover icon search results, exports, GitHub import or ads, which need the network or real files (see `docs/QA_CHECKLIST.md`).
+
+## Manual read-through
+Beyond the static checks, `ZunivoRoot`, `SearchScreen`, `EditorScreen`, `HomeScreen` and `ImageStudioScreen` (the files edited by scripts) were read line by line for compile problems; nothing was found except a duplicate import (removed). This is not a substitute for a compiler.
