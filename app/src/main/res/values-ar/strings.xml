@@ -15,7 +15,7 @@
     <string name="home_quick_designers">المصممون</string>
     <string name="home_recent">المستخدمة مؤخرًا</string>
     <string name="home_recent_empty_title">لا توجد أيقونات بعد</string>
-    <string name="home_recent_empty_msg">ستظهر هنا الأيقونات التي تفتحها.</string>
+    <string name="home_recent_empty_msg">ستظهر هنا الأيقونات التي تفتحها من البحث. أوقف «التعلّم من استخدامي» في «تفضيلاتي» إن لم ترغب بذلك.</string>
     <string name="home_categories">التصنيفات</string>
 
     <string name="search_hint">ابحث عن الأيقونات</string>
@@ -374,14 +374,14 @@
     <string name="menu_storage">التخزين والبيانات</string>
     <string name="prefs_intro">يمكن لزينوفو تذكّر طريقة استخدامك لوضع ما تستخدمه أكثر في المقدمة. لا شيء يُخفى أو يُقيَّد، ولا شيء من هذا يغادر هاتفك.</string>
     <string name="prefs_learn">التعلّم من استخدامي</string>
-    <string name="prefs_learn_desc">يرتّب التصنيفات والألوان الأخيرة حسب مرات استخدامها.</string>
+    <string name="prefs_learn_desc">يرتّب التصنيفات والألوان الأخيرة حسب مرات استخدامها، ويتذكّر الأيقونات التي فتحتها مؤخرًا لعرضها في الرئيسية.</string>
     <string name="prefs_history">الاحتفاظ بسجل البحث</string>
     <string name="prefs_history_desc">متوقف افتراضيًا. عند تشغيله تظهر آخر عمليات بحثك كاختصارات، وإيقافه يحذفها.</string>
     <string name="prefs_learned_title">ما يتذكره زينوفو</string>
     <string name="prefs_top_categories">أكثر التصنيفات استخدامًا</string>
     <string name="prefs_recent_colors">أكثر الألوان استخدامًا</string>
     <string name="prefs_nothing_yet">لا شيء بعد</string>
-    <string name="prefs_clear_learned">مسح التفضيلات المكتسبة</string>
+    <string name="prefs_clear_learned">مسح التفضيلات المكتسبة والأيقونات الأخيرة</string>
     <string name="prefs_history_title">سجل البحث</string>
     <string name="prefs_clear_history">حذف سجل البحث</string>
     <string name="storage_intro">يحتفظ زينوفو بما يحتاجه فقط. وصور الأيقونات المخزّنة مؤقتًا يمكن تنزيلها مجددًا دائمًا.</string>
@@ -398,7 +398,7 @@
     <string name="storage_delete_msg">سيُحذف نهائيًا: المفضلة والمجلدات والحزم والتعديلات المحفوظة ومشاريع المتجر وملفاتها المنزَّلة والتفضيلات واختيار اللغة. وسيعيد زينوفو التشغيل فارغًا. ولا يمكن التراجع.</string>
     <string name="storage_delete_confirm">حذف كل شيء</string>
     <string name="privacy_s1_title">ما يبقى على هاتفك</string>
-    <string name="privacy_s1_body">المفضلة والمجلدات والحزم والتعديلات المحفوظة ومشاريع GitHub المستوردة وملفاتها المنزَّلة وتفضيلاتك واختيار لغتك تُخزَّن في المساحة الخاصة بالتطبيق على هذا الهاتف. لا توجد حسابات ولا شيء يُزامَن مع خادم. وتُزال بـ«حذف كل البيانات المحلية» أو بإلغاء تثبيت التطبيق.</string>
+    <string name="privacy_s1_body">المفضلة والأيقونات المفتوحة مؤخرًا والمجلدات والحزم والتعديلات المحفوظة ومشاريع GitHub المستوردة وملفاتها المنزَّلة وتفضيلاتك واختيار لغتك تُخزَّن في المساحة الخاصة بالتطبيق على هذا الهاتف. لا توجد حسابات ولا شيء يُزامَن مع خادم. وتُزال بـ«حذف كل البيانات المحلية» أو بإلغاء تثبيت التطبيق.</string>
     <string name="privacy_s2_title">ما يُرسل وإلى من</string>
     <string name="privacy_s2_body">كلمات البحث وطلبات الأيقونات تذهب إلى واجهة Iconify العامة (api.iconify.design). واستيراد مشروع أو تحديثه في «متجري» وفحص تحديثات التطبيق يتصلان بـ GitHub (api.github.com ومضيفات ملفاته) للمستودع الذي أدخلته. وكأي موقع، تستطيع هذه الخدمات رؤية عنوان IP والطلب. أما الصور التي تختارها في «من صورة إلى مجموعة أيقونات» فتُحلَّل على الهاتف ولا تُرفع أبدًا، ولا يُرسل إلى Iconify إلا كلمات التصنيفات.</string>
     <string name="privacy_s3_title">الإعلانات</string>

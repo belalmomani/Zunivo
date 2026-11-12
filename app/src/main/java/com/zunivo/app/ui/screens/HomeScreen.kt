@@ -34,6 +34,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.zunivo.app.domain.PrefsOps
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.width
+import com.zunivo.app.feature.library.LibraryViewModel
 import com.zunivo.app.feature.prefs.PrefsViewModel
 import com.zunivo.app.feature.search.Category
 import com.zunivo.app.ui.components.ActionCard
@@ -50,7 +53,9 @@ fun HomeScreen(
     onOpen: (SubScreen) -> Unit,
     searchVm: SearchViewModel = viewModel(),
     prefsVm: PrefsViewModel = viewModel(),
+    libVm: LibraryViewModel = viewModel(),
 ) {
+    val lib by libVm.state.collectAsStateWithLifecycle()
     val prefs by prefsVm.prefs.collectAsStateWithLifecycle()
     val orderedCategories = remember(prefs.categoryUse) {
         PrefsOps.orderCategories(prefs, Category.entries.map { it.name }).map { Category.valueOf(it) }
@@ -93,11 +98,20 @@ fun HomeScreen(
         item {
             Column {
                 SectionTitle(stringResource(R.string.home_recent))
-                EmptyState(
-                    icon = Icons.Filled.Star,
-                    title = stringResource(R.string.home_recent_empty_title),
-                    message = stringResource(R.string.home_recent_empty_msg),
-                )
+                if (lib.library.recents.isEmpty()) {
+                    EmptyState(
+                        icon = Icons.Filled.Star,
+                        title = stringResource(R.string.home_recent_empty_title),
+                        message = stringResource(R.string.home_recent_empty_msg),
+                    )
+                } else {
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        items(lib.library.recents, key = { it.icon.id }) { snap ->
+                            val item = snap.toItem()
+                            Box(Modifier.width(88.dp)) { IconTile(item) { searchVm.select(item); onOpenSearch() } }
+                        }
+                    }
+                }
             }
         }
         item {

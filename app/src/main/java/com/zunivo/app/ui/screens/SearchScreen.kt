@@ -42,6 +42,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import com.zunivo.app.domain.PrefsOps
+import com.zunivo.app.feature.library.LibraryViewModel
 import com.zunivo.app.feature.prefs.PrefsViewModel
 import com.zunivo.app.R
 import com.zunivo.app.domain.IconItem
@@ -60,6 +61,7 @@ fun SearchScreen(
     onOpenEditor: (IconItem) -> Unit,
     vm: SearchViewModel = viewModel(),
     prefsVm: PrefsViewModel = viewModel(),
+    libVm: LibraryViewModel = viewModel(),
 ) {
     val state by vm.state.collectAsStateWithLifecycle()
     val selected = state.selected
@@ -67,12 +69,12 @@ fun SearchScreen(
         BackHandler { vm.select(null) }
         IconDetailScreen(item = selected, onBack = { vm.select(null) }, onOpenEditor = onOpenEditor)
     } else {
-        SearchContent(state, vm, prefsVm)
+        SearchContent(state, vm, prefsVm, libVm)
     }
 }
 
 @Composable
-private fun SearchContent(state: SearchUiState, vm: SearchViewModel, prefsVm: PrefsViewModel) {
+private fun SearchContent(state: SearchUiState, vm: SearchViewModel, prefsVm: PrefsViewModel, libVm: LibraryViewModel) {
     val prefs by prefsVm.prefs.collectAsStateWithLifecycle()
     val orderedCategories = PrefsOps.orderCategories(prefs, Category.entries.map { it.name }).map { Category.valueOf(it) }
     Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -145,12 +147,15 @@ private fun SearchContent(state: SearchUiState, vm: SearchViewModel, prefsVm: Pr
                 color = MaterialTheme.colorScheme.tertiary,
             )
         }
-        Box(Modifier.weight(1f).fillMaxWidth()) { ResultsArea(state, vm) { prefsVm.recordSearch(state.query) } }
+        Box(Modifier.weight(1f).fillMaxWidth()) { ResultsArea(state, vm) { item ->
+            prefsVm.recordSearch(state.query)
+            if (prefs.learnFromUsage) libVm.recordRecent(item)
+        } }
     }
 }
 
 @Composable
-private fun ResultsArea(state: SearchUiState, vm: SearchViewModel, onOpened: () -> Unit) {
+private fun ResultsArea(state: SearchUiState, vm: SearchViewModel, onOpened: (IconItem) -> Unit) {
     when (state.status) {
         SearchStatus.IDLE -> EmptyState(
             Icons.Filled.Search,
@@ -191,7 +196,7 @@ private fun ResultsArea(state: SearchUiState, vm: SearchViewModel, onOpened: () 
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     items(visible, key = { it.ref.id }) { item ->
-                        IconTile(item) { onOpened(); vm.select(item) }
+                        IconTile(item) { onOpened(item); vm.select(item) }
                     }
                     if (filtered.size > state.shown || state.hasMore) {
                         item(span = { GridItemSpan(maxLineSpan) }) {

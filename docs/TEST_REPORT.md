@@ -9,7 +9,7 @@ by the author. The first real result is the GitHub Actions run. Fill the table b
 | `gradle :app:assembleDebug` | _(not run yet)_ |
 | Manual QA (`docs/QA_CHECKLIST.md`) | _(not done)_ |
 
-## Unit tests written (91, JVM only)
+## Unit tests written (96, JVM only)
 | File | Tests | Covers |
 |---|---|---|
 | LicensePolicyTest | 8 | SPDX -> kind, notice, commercial/modification/distribution flags |

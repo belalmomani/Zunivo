@@ -69,6 +69,10 @@ class LibraryViewModel(app: Application) : AndroidViewModel(app) {
         say(if (had) LibraryMessage.FAVORITE_REMOVED else LibraryMessage.FAVORITE_ADDED)
     }
 
+    // ---- recently opened ----
+    fun recordRecent(item: IconItem) = mutate { LibraryOps.recordRecent(it, IconSnapshot.of(item)) }
+    fun clearRecents() = mutate { LibraryOps.clearRecents(it) }
+
     // ---- collections ----
     fun createCollection(kind: CollectionKind, name: String, open: Boolean = false): String {
         val id = UUID.randomUUID().toString()

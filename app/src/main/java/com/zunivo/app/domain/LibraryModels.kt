@@ -41,6 +41,7 @@ data class IconCollection(
 data class Library(
     val favorites: List<IconSnapshot> = emptyList(),
     val collections: List<IconCollection> = emptyList(),
+    val recents: List<IconSnapshot> = emptyList(),   // most recently opened first, newest at index 0
 )
 
 object FileNames {
@@ -65,6 +66,12 @@ object FileNames {
 object LibraryOps {
     const val MAX_ENTRIES = 200
     const val MAX_NAME = 60
+    const val MAX_RECENTS = 12
+
+    fun recordRecent(lib: Library, snap: IconSnapshot): Library =
+        lib.copy(recents = (listOf(snap) + lib.recents.filter { it.icon != snap.icon }).take(MAX_RECENTS))
+
+    fun clearRecents(lib: Library): Library = lib.copy(recents = emptyList())
 
     fun cleanName(raw: String): String = raw.trim().replace(Regex("\\s+"), " ").take(MAX_NAME)
 

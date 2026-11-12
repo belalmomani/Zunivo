@@ -8,6 +8,7 @@ import com.zunivo.app.domain.IconCollection
 import com.zunivo.app.domain.IconRef
 import com.zunivo.app.domain.IconSnapshot
 import com.zunivo.app.domain.Library
+import com.zunivo.app.domain.LibraryOps
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -42,7 +43,8 @@ object LibraryJson {
                 })
             })
         }
-        return JSONObject().put("version", 1).put("favorites", fav).put("collections", cols).toString()
+        val rec = JSONArray().also { a -> lib.recents.forEach { a.put(snapToJson(it)) } }
+        return JSONObject().put("version", 1).put("favorites", fav).put("collections", cols).put("recents", rec).toString()
     }
 
     fun fromJson(text: String): Library {
@@ -80,6 +82,12 @@ object LibraryJson {
                 )
             }
         }
-        return Library(favorites, collections)
+        val recents = ArrayList<IconSnapshot>()
+        root.optJSONArray("recents")?.let { a ->
+            for (i in 0 until a.length()) snapFromJson(a.optJSONObject(i))?.let { s ->
+                if (recents.none { it.icon == s.icon } && recents.size < LibraryOps.MAX_RECENTS) recents.add(s)
+            }
+        }
+        return Library(favorites, collections, recents)
     }
 }

@@ -25,6 +25,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zunivo.app.R
 import com.zunivo.app.domain.PrefsOps
+import com.zunivo.app.feature.library.LibraryViewModel
 import com.zunivo.app.feature.prefs.PrefsViewModel
 import com.zunivo.app.feature.search.Category
 import com.zunivo.app.ui.components.ColorSwatch
@@ -33,7 +34,7 @@ import com.zunivo.app.ui.components.SectionTitle
 
 /** Everything Zunivo remembers about how you use it. It stays on this phone and you can edit or erase it. */
 @Composable
-fun PreferencesScreen(onBack: () -> Unit, prefsVm: PrefsViewModel = viewModel()) {
+fun PreferencesScreen(onBack: () -> Unit, prefsVm: PrefsViewModel = viewModel(), libVm: LibraryViewModel = viewModel()) {
     val prefs by prefsVm.prefs.collectAsStateWithLifecycle()
     val topCategories = PrefsOps.topCategories(prefs).mapNotNull { name -> Category.entries.firstOrNull { it.name == name } }
     // stringResource is @Composable, so resolve the labels here (map is inline) and not inside joinToString.
@@ -62,7 +63,7 @@ fun PreferencesScreen(onBack: () -> Unit, prefsVm: PrefsViewModel = viewModel())
                     colors.forEach { hex -> ColorSwatch(hex, selected = false, onClick = {}) }
                 }
             }
-            OutlinedButton(onClick = prefsVm::clearLearned, modifier = Modifier.fillMaxWidth()) {
+            OutlinedButton(onClick = { prefsVm.clearLearned(); libVm.clearRecents() }, modifier = Modifier.fillMaxWidth()) {
                 Text(stringResource(R.string.prefs_clear_learned))
             }
 

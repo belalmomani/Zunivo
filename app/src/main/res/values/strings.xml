@@ -15,7 +15,7 @@
     <string name="home_quick_designers">Designers</string>
     <string name="home_recent">Recently used</string>
     <string name="home_recent_empty_title">No icons yet</string>
-    <string name="home_recent_empty_msg">Icons you open will appear here.</string>
+    <string name="home_recent_empty_msg">Icons you open from Search will appear here. Turn off Learn from my usage in My preferences to stop this.</string>
     <string name="home_categories">Categories</string>
 
     <string name="search_hint">Search icons</string>
@@ -374,14 +374,14 @@
     <string name="menu_storage">Storage and data</string>
     <string name="prefs_intro">Zunivo can remember how you use it to put the things you use most first. Nothing is hidden or restricted, and none of this leaves your phone.</string>
     <string name="prefs_learn">Learn from my usage</string>
-    <string name="prefs_learn_desc">Orders categories and recent colors by how often you use them.</string>
+    <string name="prefs_learn_desc">Orders categories and recent colors by how often you use them, and remembers the icons you opened recently for the Home screen.</string>
     <string name="prefs_history">Keep my search history</string>
     <string name="prefs_history_desc">Off by default. When on, your last searches appear as shortcuts. Turning it off deletes them.</string>
     <string name="prefs_learned_title">What Zunivo remembers</string>
     <string name="prefs_top_categories">Most used categories</string>
     <string name="prefs_recent_colors">Most used colors</string>
     <string name="prefs_nothing_yet">Nothing yet</string>
-    <string name="prefs_clear_learned">Clear learned preferences</string>
+    <string name="prefs_clear_learned">Clear learned preferences and recent icons</string>
     <string name="prefs_history_title">Search history</string>
     <string name="prefs_clear_history">Delete search history</string>
     <string name="storage_intro">Zunivo keeps only what it needs. Cached icon images can always be downloaded again.</string>
@@ -398,7 +398,7 @@
     <string name="storage_delete_msg">This permanently deletes your favorites, folders, packs, saved edits, store projects and their downloaded files, preferences and language choice. Zunivo will restart empty. It cannot be undone.</string>
     <string name="storage_delete_confirm">Delete everything</string>
     <string name="privacy_s1_title">What stays on your phone</string>
-    <string name="privacy_s1_body">Favorites, folders, packs, saved edits, imported GitHub projects with their downloaded files, your preferences and your language choice are stored in the app\'s private storage on this phone. There are no accounts and nothing is synced to a server. It is removed by Delete all local data or by uninstalling.</string>
+    <string name="privacy_s1_body">Favorites, recently opened icons, folders, packs, saved edits, imported GitHub projects with their downloaded files, your preferences and your language choice are stored in the app\'s private storage on this phone. There are no accounts and nothing is synced to a server. It is removed by Delete all local data or by uninstalling.</string>
     <string name="privacy_s2_title">What is sent, and to whom</string>
     <string name="privacy_s2_body">Search words and icon requests go to the public Iconify API (api.iconify.design). Importing or updating a project in My store, and checking for app updates, contact GitHub (api.github.com and GitHub file hosts) for the repository you entered. Like any website, these services can see your IP address and the request. Images you pick for Image to icon set are analyzed on the phone and are never uploaded; only category keywords are sent to Iconify.</string>
     <string name="privacy_s3_title">Ads</string>
